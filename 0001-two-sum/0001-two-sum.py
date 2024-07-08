@@ -1,8 +1,16 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        n = len(nums)
-        for i in range(n - 1):
-            for j in range(i + 1, n):
-                if nums[i] + nums[j] == target:
-                    return [i, j]
-        return []  # No solution found
+        tuples = [(nums[i], i) for i in range(len(nums))]
+        tuples.sort(key = lambda tup:tup[0])
+        left, right = 0, len(nums) - 1
+        
+        while left < right:
+            sum = tuples[left][0] + tuples[right][0]
+            if sum == target:
+                return [tuples[left][1], tuples[right][1]]
+            elif sum < target:
+                left += 1
+            else:
+                right -= 1
+        
+ 
