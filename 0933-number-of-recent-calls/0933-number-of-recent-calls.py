@@ -1,6 +1,4 @@
 class RecentCounter:
-    # recentCalls
-
     def __init__(self):
         self.recentCalls = deque()
         
