@@ -1,20 +1,15 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        minNeg, maxPos, res = None, None, nums[0]
+        res, minVal, maxVal = max(nums), 1, 1
         for num in nums:
             if num == 0:
                 res = max(res, num)
-                newMinNeg, newMaxPos = None, None
-            elif num > 0:
-                curMax = num * maxPos if maxPos else num
-                res = max(res, curMax)
-                newMaxPos = num * maxPos if maxPos else num
-                newMinNeg = num * minNeg if minNeg else None
+                minVal, maxVal = 1, 1
             else:
-                curMax = num * minNeg if minNeg else num
-                res = max(res, curMax)
-                newMaxPos = num * minNeg if minNeg else None
-                newMinNeg = num * maxPos if maxPos else num
-            maxPos, minNeg = newMaxPos, newMinNeg
-
+                minVal, maxVal = min(num, num * minVal, num * maxVal), max(num, num * minVal, num * maxVal)
+                res = max(res, maxVal)
+                
         return res
+        
+    
+        
