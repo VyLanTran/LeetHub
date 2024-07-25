@@ -4,8 +4,6 @@ class Solution:
         endTime = []
         res = 0
         
-        # print(intervals)
-        
         for interval in intervals:
             start, end = interval[0], interval[1]
             if not endTime or (endTime and endTime[0] > start):
