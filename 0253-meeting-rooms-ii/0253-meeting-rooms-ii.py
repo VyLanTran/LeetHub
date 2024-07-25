@@ -2,15 +2,16 @@ class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
         intervals.sort(key = lambda x:x[0])
         endTime = []
-        res, cur = 0, 0
+        res = 0
+        
+        # print(intervals)
         
         for interval in intervals:
             start, end = interval[0], interval[1]
-            while endTime and endTime[0] <= start:
+            if not endTime or (endTime and endTime[0] > start):
+                res += 1
+            else:
                 heappop(endTime)
-                cur -= 1
-            cur += 1
-            res = max(res, cur)
             heappush(endTime, end)
             
         return res
