@@ -8,22 +8,23 @@ class Solution:
             if i < 0 or j < 0 or i >= rows or j >= cols or visited[i][j][oceanIndex] or heights[i][j] < prevHeight:
                 return
             visited[i][j][oceanIndex] = True
-            if oceanIndex == 1 and visited[i][j] == [True, True]:
-                res.append([i, j])
             dfs(i - 1, j, oceanIndex, heights[i][j])
             dfs(i + 1, j, oceanIndex, heights[i][j])
             dfs(i, j - 1, oceanIndex, heights[i][j])
             dfs(i, j + 1, oceanIndex, heights[i][j])
             
         for i in range(rows):
-            for j in range(cols):
-                if i == 0 or j == 0:
-                    dfs(i, j, 0, -1)
-                    
+            dfs(i, 0, 0, -1)
+            dfs(i, cols - 1, 1, -1)
+        
+        for j in range(cols):
+            dfs(0, j, 0, -1)
+            dfs(rows - 1, j, 1, -1)
+            
         for i in range(rows):
             for j in range(cols):
-                if i == rows - 1 or j == cols - 1:
-                    dfs(i, j, 1, -1)
+                if visited[i][j] == [True, True]:
+                    res.append([i, j])
                     
         return res
         
