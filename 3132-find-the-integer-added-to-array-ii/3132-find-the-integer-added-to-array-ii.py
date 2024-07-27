@@ -23,7 +23,6 @@ class Solution:
             if isValid(i, nums1, nums2):
                 newDiff = nums2[0] - nums1[i]
                 res = min(res, newDiff) if res else newDiff
-        print(isValid(0, nums1, nums2))
         
         return res
         
