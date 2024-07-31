@@ -1,12 +1,5 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        '''
-        inDeg = [0, 0]
-        adj = dict()
-        queue = []
-        count = 1
-        0
-        '''
         inDeg = [0 for _ in range(numCourses)]
         adj = dict()
         queue = deque()
@@ -23,9 +16,7 @@ class Solution:
         for i in range(numCourses):
             if inDeg[i] == 0:
                 queue.append(i)
-                
-        # print(inDeg)
-                
+                                
         while queue:
             u = queue.popleft()
             count += 1
@@ -34,7 +25,6 @@ class Solution:
                 if inDeg[v] == 0:
                     queue.append(v)
                    
-        print(count)
         return count == numCourses
             
         
