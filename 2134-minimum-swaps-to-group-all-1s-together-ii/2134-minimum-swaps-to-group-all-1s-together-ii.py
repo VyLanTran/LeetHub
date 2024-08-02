@@ -1,15 +1,5 @@
 class Solution:
     def minSwaps(self, nums: List[int]) -> int:
-        '''
-        0,1,2,3,4,5,6,7,8
-        0,1,1,1,0,0,1,1,0
-        i         j
-        numOnes = 5
-        i = 1
-        j = 5
-        numZeros = 1
-        res = 2
-        '''
         def countOne(nums):
             res = 0
             for num in nums:
