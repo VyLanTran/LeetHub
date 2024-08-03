@@ -16,10 +16,10 @@ class Solution:
         maxHeap = [(-diff[i], i) for i in range(n)]
         heapify(maxHeap)
         res = 0
+        mice1 = set()
         for i in range(k):
             (_, j) = heappop(maxHeap)
-            res += reward1[j]
-        while maxHeap:
-            (_, j) = heappop(maxHeap)
-            res += reward2[j]
+            mice1.add(j)
+        for i in range(n):
+            res += reward1[i] if i in mice1 else reward2[i]
         return res
