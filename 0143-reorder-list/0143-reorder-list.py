@@ -8,39 +8,6 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-        '''
-        <- 1 <- 2  <- 3 <-  4  5
-                           a    b.  c
-                           
-      <-  1 2
-          a  b 
-        while b.next not null
-        b.next = a
-        a = b
-        b = c
-        c = b.next
-        
-        ====
-        b.next = a
-        
-        
-        
-         ,  , 3
-                h1 n1
-         ,  
-                h2 n2
-        
-        1, 5,2, 4, 3
-        
-        if h1 and h2
-        n1 = h1.next
-        n2 = h2.next
-        h1.next = h2
-        h2.next = n1
-        h1 = n1
-        h2 = n2
-        '''
-        
         if not head or not head.next:
             return head
         
