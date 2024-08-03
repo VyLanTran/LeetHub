@@ -33,7 +33,6 @@ class Solution:
         
         fallingOrFallen = set()
         queue = deque()
-        # direction = dict()
         
         for i in range(n):
             c = dominoes[i]
@@ -59,6 +58,4 @@ class Solution:
                 queue.append((i, d))
                 fallingOrFallen.add(i)
                 
-                
-        
         return ''.join(res)
