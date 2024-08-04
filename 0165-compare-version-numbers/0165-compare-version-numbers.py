@@ -6,7 +6,6 @@ class Solution:
             num1 = int(version1[i]) if i < len(version1) else 0
             num2 = int(version2[j]) if j < len(version2) else 0
             if num1 != num2:
-                # return -1 if str(num1) + str(num2) > str(num2) + str(num1) else 1
                 return -1 if num1 < num2 else 1
             i += 1
             j += 1
