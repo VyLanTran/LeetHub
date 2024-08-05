@@ -15,15 +15,7 @@ class Solution:
                     cur.children[c] = TrieNode()
                 cur = cur.children[c]
             cur.endOfWord = True
-                
-        '''
-        trie: cat, cate
-        word: caten ==> cat
-              iiii
-              
-        cur = t
-        path = "catt"
-        '''
+   
         def findRoot(word):
             cur = root
             path = ""
