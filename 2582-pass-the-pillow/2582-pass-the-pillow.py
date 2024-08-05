@@ -32,6 +32,4 @@ class Solution:
         k = n - 1
         row = time // k if time % k != 0 else time // k - 1
         rem = time % k if time % k != 0 else k
-        # dir = 1 for left to right, -1 otherwise
-        # dir = 1 if row % 2 == 0 else -1
         return 1 + rem if row % 2 == 0 else n - rem
