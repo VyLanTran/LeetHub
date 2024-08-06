@@ -11,12 +11,10 @@ class Solution:
                     minVal = num
                     minIndex = i
                 if num >= maxVal:
-                    # print("before update", num, maxVal)
                     maxVal = num
                     maxIndex = i
             return minIndex, maxIndex
         
         minIndex, maxIndex = findMinMax()
-        # print(minIndex, maxIndex)
         res = minIndex + (n - 1 - maxIndex)
         return res - 1 if minIndex > maxIndex else res
