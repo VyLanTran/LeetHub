@@ -5,7 +5,6 @@ class Solution:
             freq[c] = freq.get(c, 0) + 1
         arr = [val for val in freq.values()]
         arr.sort(reverse = True)
-        # print(arr)
         i, res = 0, 0
         while i < len(arr):
             if i < 8:
