@@ -25,7 +25,6 @@ class TopVotedCandidate:
         if not self.lead:
             self.findLead(self.persons)
         i = self.binSearch(self.times, t)
-        # return self.findWinner(i)
         return self.lead[i] 
     
     def binSearch(self, arr, t):
@@ -44,18 +43,6 @@ class TopVotedCandidate:
                 left = mid + 1
         return left
     
-#     def findWinner(self, index):
-#         map = dict()
-#         maxVotes = 0
-#         res = 0
-#         for i in range(index + 1):
-#             person = self.persons[i]
-#             map[person] = map.get(person, 0) + 1
-#             if map[person] >= maxVotes:
-#                 maxVotes = map[person]
-#                 res = person
-#         return res
-        
             
 
 
