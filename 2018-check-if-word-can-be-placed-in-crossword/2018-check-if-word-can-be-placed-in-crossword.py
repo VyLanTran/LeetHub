@@ -6,13 +6,8 @@ class Solution:
             return i >= 0 and j >= 0 and i < rows and j < cols
         
         def dfs(i, j, k, dirI, dirJ):
-            # if i == 0 and j == 1:
-            #     print("here")
-            # print(i, j, k, dirI, dirJ, startI, startJ)
             if k == len(word):
-                # prevI, prevJ = startI - dirI, startJ - dirJ
                 if not isInBound(i, j) or board[i][j] == "#":
-                    # print("terminate:", startI, startJ, dirI, dirJ)
                     return True
                 return False
             
