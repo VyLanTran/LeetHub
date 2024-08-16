@@ -3,15 +3,13 @@ class Solution:
 
         numAccounts = len(accounts)
         visitedAccounts = [False for _ in range(numAccounts)]
-        emailAccountMap = dict()
+        emailAccountMap = defaultdict(list)
         res = []
 
         def buildGraph():
             for id, account in enumerate(accounts):
                 for i in range(1, len(account)):
                     email = account[i]
-                    if email not in emailAccountMap:
-                        emailAccountMap[email] = []
                     emailAccountMap[email].append(id)
                     
         buildGraph()
@@ -23,23 +21,16 @@ class Solution:
             for i in range(1, len(accounts[id])):
                 email = accounts[id][i]
                 emails.add(email)
-                if email in emailAccountMap:
-                    for id2 in emailAccountMap[email]:
+                for id2 in emailAccountMap[email]:
                         dfs(id2, emails)
         
         for id, account in enumerate(accounts):
             if visitedAccounts[id]:
                 continue
-            # print(id)
             emails = set()
             name = account[0]
             dfs(id, emails)
-            emails = list(emails)
-            emails.sort()
-            # print(emails)
-            arr = [name]
-            arr.extend(emails)
-            res.append(arr)
+            res.append([name] + sorted(emails))
         
         return res
             
