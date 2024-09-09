@@ -33,7 +33,10 @@ class Solution:
             right -= 1
             
             # fill bottom row
-            if not (left <= right and top <= bottom and curNode and not breakLoop):
+            # if not (left <= right and top <= bottom and curNode and not breakLoop):
+            #     break
+            
+            if not curNode or breakLoop:
                 break
             for i in range(right, left - 1, -1):
                 if not curNode:
