@@ -18,11 +18,9 @@ dp    0 1 2 3 4 5 6 7 8
             for j in range(i):
                 suffix = s[j:i]
                 if suffix in wordDict and dp[j]:
-                    # print(i, j, suffix)
                     dp[i] = True
                     break
             if not dp[i]:
                 dp[i] = False
-        # print(dp)
         return dp[-1]
         
