@@ -11,12 +11,12 @@ class Solution:
                 curString = char.upper() + curString
                 count += 1
                 if count == k:
-                    res = curString if not res else curString + "-" + res
+                    res = "-" + curString + res
                     curString, count = "", 0
             i -= 1
         if curString:
-            return curString if not res else curString + "-" + res
-        return res
+            return curString + res
+        return res[1:len(res)]
     
     '''
     2-5g-3-J
