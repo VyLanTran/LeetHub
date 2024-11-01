@@ -1,25 +1,17 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        map = dict()
-        res = []
         
-        def hash(word):
-            count = [0] * 26
-            for c in word:
-                count[ord(c) - ord('a')] += 1
-            res = ""
-            for i in range(26):
-                res += chr(ord('a') + i) + str(count[i])
-            return res
+        def countFrequency(word):
+            freq = [0] * 26
+            for char in word:
+                freq[ord(char) - ord('a')] += 1
+            return tuple(freq)
         
+        anagrams = defaultdict(list)
         for word in strs:
-            hashedStr = hash(word)
-            if not hashedStr in map:
-                map[hashedStr] = [word]
-            else:
-                map[hashedStr].append(word)
-        for value in map.values():
-            res.append(value)
-        
+            pattern = countFrequency(word)
+            anagrams[pattern].append(word)
+        res = []
+        for arr in anagrams.values():
+            res.append(arr)
         return res
-            
