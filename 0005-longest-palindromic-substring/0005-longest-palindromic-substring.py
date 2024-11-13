@@ -1,21 +1,34 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        maxLen = 1
-        res = s[0]
+        '''
+        0123
+        cbbd
+        '''
+        n = len(s)
         
-        for i in range(len(s)):
-            oddIndex, evenIndex = i, i + 0.5
-            oddGap, evenGap = 1, 0.5
-            # print(evenIndex - evenGap, evenIndex + evenGap)
-            while oddIndex - oddGap >= 0 and oddIndex + oddGap < len(s) and s[oddIndex - oddGap] == s[oddIndex + oddGap]:
-                oddGap += 1
-            while evenIndex - evenGap >= 0 and evenIndex + evenGap < len(s) and s[int(evenIndex - evenGap)] == s[int(evenIndex + evenGap)]:
-                evenGap += 1
-            oddGap, evenGap = oddGap - 1, evenGap - 1
-            if 2*oddGap + 1 > maxLen:
-                maxLen = 2*oddGap + 1
-                res = s[oddIndex-oddGap : oddIndex+oddGap+1]
-            if 2*evenGap + 1 > maxLen:
-                maxLen = 2*evenGap + 1
-                res = s[int(evenIndex-evenGap) : int(evenIndex+evenGap+1)]
+        def helper(i):
+            odd = s[i]
+            even = ""
+            
+            for j in range(1, n):
+                if i - j < 0 or i + j >= n:
+                    break
+                if s[i - j] != s[i + j]:
+                    break
+                odd = s[i - j] + odd + s[i + j]
+            
+            j = i + 1
+            if j < n:
+                for k in range(n):
+                    if i - k < 0 or j + k >= n:
+                        break
+                    if s[i - k] != s[j + k]:
+                        break
+                    even = s[i - k] + even + s[j + k]
+            return odd if len(odd) >= len(even) else even
+        
+        res = ""
+        for i in range(n):
+            candidate = helper(i)
+            res = candidate if len(candidate) > len(res) else res
         return res
