@@ -1,27 +1,35 @@
 class Solution:
-    '''
-    ab"
-    01234567
-    eidboaoo
-    iiiii
-    jjjjjj
-    
-    a: 0, b: 0
-    e: 0
-    '''
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        freq = [0 for _ in range(26)]
-        i = 0
-        for char in s1:
-            index = ord(char) - ord('a')
-            freq[index] += 1
-        for j in range(len(s2)):
-            index = ord(s2[j]) - ord('a')
-            freq[index] -= 1
-            while freq[index] < 0:
-                freq[ord(s2[i]) - ord('a')] += 1
-                i += 1
-            if j - i + 1 == len(s1):
+        '''
+        a: 1, b: 1
+        
+        eibbaoo
+        rrrrr
+        llll
+        
+        e: 0
+        i: 0
+        b: 1
+        a: 1
+        '''
+        
+        def countFreq(s):
+            freq = defaultdict(int)
+            for char in s:
+                freq[char] += 1
+            return freq
+        
+        freq1 = countFreq(s1)
+        freq2 = defaultdict(int)
+        left = 0
+        for right in range(len(s2)):
+            char = s2[right]
+            freq2[char] += 1
+            while freq2[char] > freq1[char]:
+                leftChar = s2[left]
+                freq2[leftChar] -= 1
+                left += 1
+            if right - left + 1 == len(s1):
                 return True
+            
         return False
-                
