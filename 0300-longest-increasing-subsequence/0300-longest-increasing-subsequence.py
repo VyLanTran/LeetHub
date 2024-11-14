@@ -12,7 +12,7 @@ class Solution:
                     res = mid
                     right = mid - 1
                 elif incr_sequence[mid] == target:
-                    return -1
+                    return mid
                 else:
                     left = mid + 1
             return res
@@ -22,12 +22,8 @@ class Solution:
                 incr_sequence.append(num)
             else:
                 # find first num that is < num
-                # print("before:", incr_sequence)
                 index = findFirstLarger(num)
-                if index != -1:
-                    incr_sequence[index] = num
-        #         print("after:", incr_sequence)
-        # print(incr_sequence)
+                incr_sequence[index] = num
         return len(incr_sequence)
                 
         
