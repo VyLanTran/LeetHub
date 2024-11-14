@@ -1,31 +1,31 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        inDeg = [0 for _ in range(numCourses)]
-        adj = dict()
+        
+        def createGraph():
+            graph = defaultdict(list)
+            inDegrees = [0] * numCourses
+            for after, before in prerequisites:
+                graph[before].append(after)
+                inDegrees[after] += 1
+            return graph, inDegrees
+        
+        
+        graph, inDegrees = createGraph()     
         queue = deque()
-        count = 0
+        numTaken = 0
         
         for i in range(numCourses):
-            adj[i] = []
-        
-        for pre in prerequisites:
-            v, u = pre[0], pre[1]
-            inDeg[v] += 1
-            adj[u].append(v)
-            
-        for i in range(numCourses):
-            if inDeg[i] == 0:
+            if inDegrees[i] == 0:
                 queue.append(i)
-                                
+                
         while queue:
-            u = queue.popleft()
-            count += 1
-            for v in adj[u]:
-                inDeg[v] -= 1
-                if inDeg[v] == 0:
-                    queue.append(v)
-                   
-        return count == numCourses
-            
-        
-        
+            size = len(queue)
+            for _ in range(size):
+                i = queue.popleft()
+                numTaken += 1
+                for j in graph[i]:
+                    inDegrees[j] -= 1
+                    if inDegrees[j] == 0:
+                        queue.append(j)
+                        
+        return numTaken == numCourses
