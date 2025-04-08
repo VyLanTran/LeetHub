@@ -14,6 +14,9 @@ class Solution:
 
         set = 4
         i = 4, 3
+
+        Time: O(n)
+        Space: O(n)
         '''
 
         appearedNums = set()
