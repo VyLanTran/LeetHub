@@ -1,17 +1,12 @@
 class Solution:
     def maximumLengthSubstring(self, s: str) -> int:
         '''
-        01234567
-        bcbbbcba
-        jjjj
-        ii
+        use reasoning to solve the problem, don't need a proper algo at this
+        point, just explain step by step how you would solve this problem
+        as a human
         
-        {
-            b: 1, 2, 3, 2
-            c: 1
-        }
-
-        max = 3
+        intuition?
+        edge case?
         '''
 
         freq = defaultdict(int)
@@ -22,7 +17,7 @@ class Solution:
             char = s[right]
             freq[char] += 1
             
-            while left <= right and freq[char] > 2:
+            while freq[char] > 2:
                 freq[s[left]] -= 1
                 left += 1
             
