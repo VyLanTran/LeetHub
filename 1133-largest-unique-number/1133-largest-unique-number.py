@@ -10,14 +10,21 @@ class Solution:
         Space: O(n)
         '''
 
-        freq = defaultdict(int)
-        max_num = -1
+        # freq = defaultdict(int)
+        # max_num = -1
 
-        for num in nums:
-            freq[num] += 1
+        # for num in nums:
+        #     freq[num] += 1
 
-        for key, val in freq.items():
-            if val == 1:
-                max_num = max(max_num, key)
+        # for key, val in freq.items():
+        #     if val == 1:
+        #         max_num = max(max_num, key)
 
-        return max_num
+        # return max_num
+
+        '''
+        Cleaner version
+        '''
+        num_freq = Counter(nums)
+
+        return max((num for num, freq in num_freq.items() if freq == 1), default=-1)
