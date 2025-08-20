@@ -2,7 +2,7 @@ class Solution:
     def maxNumberOfApples(self, weight: List[int]) -> int:
         '''
         Time: O(nlog(n))
-        Space: O(n) - sorting
+        Space: O(1)
         '''
         weight.sort()
         total_weight = 0
