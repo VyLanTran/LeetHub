@@ -25,6 +25,12 @@ class Solution:
         '''
         Cleaner version
         '''
-        num_freq = Counter(nums)
+        # num_freq = Counter(nums)
 
-        return max((num for num, freq in num_freq.items() if freq == 1), default=-1)
+        # return max((num for num, freq in num_freq.items() if freq == 1), default=-1)
+
+        '''
+        Cleanest version
+        '''
+
+        return max([-1] + [num for num, freq in Counter(nums).items() if freq == 1])
