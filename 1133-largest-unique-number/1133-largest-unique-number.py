@@ -4,6 +4,12 @@ class Solution:
         5,7,3,9,4,9,8,3,1
         '''
 
+        '''
+        Approach 1
+        Time: O(n)
+        Space: O(n)
+        '''
+
         freq = defaultdict(int)
         max_num = -1
 
