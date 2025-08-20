@@ -12,6 +12,8 @@ class Solution:
         '''
 
         total_dist, clockwise_dist = 0, 0
+        # careful: if not assigning start and dest at the same time, start 
+        # will get a diff value before reassigning
         start, destination = min(start, destination), max(start, destination)
 
         for i, dist in enumerate(distance):
