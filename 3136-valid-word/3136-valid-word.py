@@ -3,19 +3,21 @@ class Solution:
         if len(word) < 3 or not word.isalnum():
             return False
 
-        vowels = set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'])
-        num_vowels, num_consonants = 0, 0
+        vowels = set(['a', 'e', 'i', 'o', 'u'])
+        has_vowel, has_consonant = False, False
 
         for char in word:
-            if char in vowels:
-                num_vowels += 1
-            elif char.isalpha() and char not in vowels:
-                num_consonants += 1
-            else:
-                pass
+            if char.isalpha():
+                char = char.lower()
+                if char in vowels:
+                    has_vowel = True
+                else:
+                    has_consonant = True
+                
+                if has_vowel and has_consonant:
+                    return True
+            elif not char.isnumeric():
+                return False
 
-            if num_vowels > 0 and num_consonants > 0:
-                return True
-
-        return False
             
+        return False
