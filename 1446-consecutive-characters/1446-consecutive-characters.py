@@ -1,5 +1,10 @@
 class Solution:
     def maxPower(self, s: str) -> int:
+        '''
+        Time: O(n)
+        Space: O(1)
+        '''
+
         res = 0
         i = 0
 
