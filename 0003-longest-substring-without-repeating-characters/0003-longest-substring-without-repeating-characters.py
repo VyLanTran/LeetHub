@@ -1,36 +1,19 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        '''
-        01234567
-        abcabcbb
-        RRRRR
-        LLL
-        
-        maxLen = 3
-        frequency = {
-            a: 1,
-            b: 2,
-            c: 1
-        }
-        
-        Time: O(n) where n = len(s)
-        Space: O(n)
-        
-        
-        '''
-        
-        n = len(s)
+        max_len = 0
         left = 0
-        frequency = defaultdict(int)
-        maxLen = 0
-        
-        for right in range(n):
+        char_freq = defaultdict(int)
+
+        for right in range(len(s)):
             char = s[right]
-            frequency[char] += 1
-            while frequency[char] > 1:
-                removedChar = s[left]
-                frequency[removedChar] -= 1
+            char_freq[char] += 1
+
+            while char_freq[char] > 1:
+                removed_char = s[left]
+                char_freq[removed_char] -= 1
                 left += 1
-            maxLen = max(maxLen, right - left + 1)
-        
-        return maxLen
+
+            max_len = max(max_len, right - left + 1)
+        return max_len
+            
+
