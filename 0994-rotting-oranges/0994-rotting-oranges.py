@@ -1,17 +1,8 @@
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         '''
-        2 1 1 
-        0 1 1 
-        1 0 1
-
-        - first, go through the matrix to
-            - count number of fresh oranges
-            - add the coordinate of all rotten oranges into a queue
-        - bfs until queue becomes empty
-            - decrement number of fresh oranges
-            - increment number of minutes after each iteration
-        - return -1 if fresh ornages still exist, else num_minutes
+        Time: O(mn)
+        Space: O(mn)
         '''
 
         minutes = -1
@@ -39,7 +30,7 @@ class Solution:
                 for di, dj in direction:
                     new_i = i + di
                     new_j = j + dj
-                    if new_i >= 0 and new_i < rows and new_j >= 0 and new_j < cols and grid[new_i][new_j] == 1:
+                    if 0 <= new_i < rows and 0 <= new_j < cols and grid[new_i][new_j] == 1:
                         grid[new_i][new_j] = 2
                         fresh_count -= 1
                         queue.append((new_i, new_j))
