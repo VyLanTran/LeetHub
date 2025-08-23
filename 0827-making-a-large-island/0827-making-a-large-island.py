@@ -14,21 +14,19 @@ class Solution:
         direction = [[-1, 0], [1, 0], [0, -1], [0, 1]]
 
         def dfs(i, j, hash_value):
-            if not (0 <= i < rows and 0 <= j < cols) or grid[i][j] != 1:
-                return
-            nonlocal area
-            area += 1
+            area = 1
             grid[i][j] = hash_value
-            dfs(i - 1, j, hash_value)
-            dfs(i + 1, j, hash_value)
-            dfs(i, j - 1, hash_value)
-            dfs(i, j + 1, hash_value)
+            for di, dj in direction:
+                new_i = i + di
+                new_j = j + dj
+                if 0 <= new_i < rows and 0 <= new_j < cols and grid[new_i][new_j] == 1:
+                    area += dfs(new_i, new_j, hash_value)
+            return area
 
         for i in range(rows):
             for j in range(cols):
                 if grid[i][j] == 1:
-                    area = 0
-                    dfs(i, j, hash_value)
+                    area = dfs(i, j, hash_value)
                     island_area[hash_value] = area
                     hash_value += 1
                     max_area = max(max_area, area)
