@@ -1,5 +1,8 @@
 class Solution:
     def minKnightMoves(self, x: int, y: int) -> int:
+        '''
+
+        '''
         directions = [[-2, -1], [-1, -2], [1, -2], [2, -1], [-2, 1], [-1, 2], [1, 2], [2, 1]]
         queue = deque([(0, 0, 0)])
         visited = set([(0, 0)])
@@ -14,4 +17,4 @@ class Solution:
                 if (new_i, new_j) not in visited:
                     visited.add((new_i, new_j))
                     queue.append((new_i, new_j, steps + 1))
-        return 0
+        return -1
