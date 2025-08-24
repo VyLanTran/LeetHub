@@ -3,7 +3,7 @@ class Solution:
         res = []
 
         for i in range(0, len(s), k):
-            res.append(s[i : min(i + k, len(s))])
+            res.append(s[i : i + k])
 
         res[-1] = res[-1] + fill * (k - len(res[-1]))
 
