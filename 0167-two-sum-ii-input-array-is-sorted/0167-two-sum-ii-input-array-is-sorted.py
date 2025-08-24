@@ -1,28 +1,28 @@
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         '''
-        if sum == target:
-            return [left + 1, right + 1]
-        elif sum < target:
-            left += 1
-        else:
-            right += 1
+        left, right
 
-        0,1,2 ,3
-        2,7,11,15
+        while left <= right:
+            if sum == target:
+                return [left + 1, right + 1]
+            elif sum < target:
+                left += 1
+            else:
+                right -= 1
 
-        l = 0
-        r = 3, 2, 1
-        sum = 17, 13
+        Time: O(n)
+        Space: O(1)
         '''
 
         left, right = 0, len(numbers) - 1
 
-        while left < right:
-            twoSum = numbers[left] + numbers[right]
-            if twoSum == target:
+        while left <= right:
+            cur_sum = numbers[left] + numbers[right]
+            if cur_sum == target:
                 return [left + 1, right + 1]
-            elif twoSum < target:
+            elif cur_sum < target:
                 left += 1
             else:
                 right -= 1
+        return [1, 2]
