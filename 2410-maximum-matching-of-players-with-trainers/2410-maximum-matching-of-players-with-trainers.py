@@ -1,16 +1,10 @@
 class Solution:
     def matchPlayersAndTrainers(self, players: List[int], trainers: List[int]) -> int:
         '''
-
-        players = [4, 7, 9]
-                    0  1. 2. 3
-        trainers = [2, 5, 8, 8]
-                       m
-                    l
-                    r
-        start = 0, 2
-        find(4, start = 0) = 1
-        res = 0, 1
+        m = num players
+        n = num trainers
+        Time: O(mlog(m) + nlog(n) + mlog(n)) = O(klog(k)), where k = max(m, n)
+        Space: O(m + n) (due to sorting)
         '''
 
         num_players, num_trainers = len(players), len(trainers)
