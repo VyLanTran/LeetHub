@@ -1,5 +1,9 @@
 class Solution:
     def bestHand(self, ranks: List[int], suits: List[str]) -> str:
+        '''
+        Time: O(1)
+        Space: O(1)
+        '''
         if len(set(suits)) == 1:
             return "Flush"
         
