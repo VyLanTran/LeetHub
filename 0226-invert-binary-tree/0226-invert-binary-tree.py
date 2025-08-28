@@ -11,11 +11,33 @@ class Solution:
         Space: O(n), in the worse case, tree is a string-shape thus the 
         stack size is O(n)
         '''
+        # if not root:
+        #     return root
+        # self.invertTree(root.left)
+        # self.invertTree(root.right)
+        # root.left, root.right = root.right, root.left
+
+        # return root
+
+        '''
+        Time: O(n)
+        Space: O(n//2) = O(n)
+        '''
+
         if not root:
             return root
-        self.invertTree(root.left)
-        self.invertTree(root.right)
-        root.left, root.right = root.right, root.left
 
+        queue = deque([root])
+        
+        while queue:
+            node = queue.popleft()
+            node.left, node.right = node.right, node.left
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        
         return root
+
+
             
