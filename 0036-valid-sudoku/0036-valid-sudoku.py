@@ -1,8 +1,8 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         '''
-        Time: O(81) = O(1)
-        Space: O(1)
+        Time: O(N^2) = O(1) since N = 9
+        Space: O(N^2) = O(1) since N = 9
         '''
         N = 9
         rows = [set() for _ in range(N)]
