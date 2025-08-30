@@ -1,15 +1,18 @@
-from collections import deque
-
 class Solution:
     def isValid(self, s: str) -> bool:
-        map = { ')': '(',  '}': '{',  ']': '['}
-        stack = deque()
-        for c in s:
-            if c == '(' or c == '[' or c == '{':
-                stack.append(c)
-                continue
-            if len(stack) == 0 or stack.pop() != map[c]:
+        stack = []
+        bracket_map = {
+            ')': '(',
+            '}': '{',
+            ']': '['
+        }
+
+        for char in s:
+            if char in "({[":
+                stack.append(char)
+            elif stack and stack[-1] == bracket_map[char]:
+                stack.pop()
+            else:
                 return False
+        
         return len(stack) == 0
-            
-            
