@@ -1,17 +1,5 @@
 class KthLargest:
     '''
-    use a min heap of size k to store the largest k numbers
-    min_heap.pop() = the kth largest num
-    when add num
-        if size < k:
-            add num
-        else:
-            if num <= top number:
-                pass (aka don't add)
-            else:
-                pop 
-                add num
-
     Time:
         O(n * log(k)) for initialize initial array 
         O(log(k)) for each addition of a number (including the initial nums)
