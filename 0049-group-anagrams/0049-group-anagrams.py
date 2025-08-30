@@ -5,7 +5,7 @@ class Solution:
         m = max len of a string
 
         Time: O(mn)
-        Space: O(n)
+        Space: O(mn)
         '''
 
         def encode(s):
@@ -20,3 +20,4 @@ class Solution:
             anagram_map[encode(s)].append(s)
 
         return list(anagram_map.values())
+    
