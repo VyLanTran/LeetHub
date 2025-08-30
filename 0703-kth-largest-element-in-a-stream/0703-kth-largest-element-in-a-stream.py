@@ -1,29 +1,40 @@
 class KthLargest:
+    '''
+    use a min heap of size k to store the largest k numbers
+    min_heap.pop() = the kth largest num
+    when add num
+        if size < k:
+            add num
+        else:
+            if num <= top number:
+                pass (aka don't add)
+            else:
+                pop 
+                add num
+
+    Time: O(log(k)) for each addition of a number (including the initial nums)
+    Space: O(k)
+           
+    '''
 
     def __init__(self, k: int, nums: List[int]):
-        self.minHeap = []
+        self.min_heap = []
         self.k = k
+
         for num in nums:
-            if len(self.minHeap) < k:
-                heappush(self.minHeap, num)
-            elif num > self.minHeap[0]:
-                heappop(self.minHeap)
-                heappush(self.minHeap, num)
-        
+            self.add(num)
 
     def add(self, val: int) -> int:
-        if len(self.minHeap) < self.k:
-                heappush(self.minHeap, val)
-        elif val > self.minHeap[0]:
-            heappop(self.minHeap)
-            heappush(self.minHeap, val)
-        return self.minHeap[0]
+        if len(self.min_heap) < self.k:
+            heappush(self.min_heap, val)
+        elif val > self.min_heap[0]:
+            heappop(self.min_heap)
+            heappush(self.min_heap, val)
+
+        return self.min_heap[0]
+        
 
 
 # Your KthLargest object will be instantiated and called as such:
 # obj = KthLargest(k, nums)
 # param_1 = obj.add(val)
-
-'''
-2, 3, 4,5, 5, 9, 8, 8, 10
-'''
