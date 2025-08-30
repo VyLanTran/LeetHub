@@ -12,7 +12,9 @@ class KthLargest:
                 pop 
                 add num
 
-    Time: O(log(k)) for each addition of a number (including the initial nums)
+    Time:
+        O(n * log(k)) for initialize initial array 
+        O(log(k)) for each addition of a number (including the initial nums)
     Space: O(k)
            
     '''
