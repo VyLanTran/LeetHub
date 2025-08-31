@@ -1,4 +1,11 @@
 class FindSumPairs:
+    '''
+    Time: 
+        init: O(n + m)
+        add: O(1)
+        count: O(n)
+    Space: O(n + m)
+    '''
 
     def __init__(self, nums1: List[int], nums2: List[int]):
         self.nums2 = nums2
