@@ -1,8 +1,8 @@
 class Solution:
     def minSum(self, nums1: List[int], nums2: List[int]) -> int:
         '''
-        sum1, count1 = 6, 2
-        sum2, count2 = 11, 1
+        Time: O(m + n)
+        Space: O(1)
         '''
 
         def arr_pattern(nums):
