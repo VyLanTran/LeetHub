@@ -17,5 +17,5 @@ class Solution:
                 heappop(max_heap)
             heappush(max_heap, (-dist_squared, i))
 
-        return [points[tup[1]] for tup in max_heap]
+        return [points[i] for (_, i) in max_heap]
         
