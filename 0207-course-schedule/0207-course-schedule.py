@@ -1,31 +1,34 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        
-        def createGraph():
-            graph = defaultdict(list)
-            inDegrees = [0] * numCourses
-            for after, before in prerequisites:
-                graph[before].append(after)
-                inDegrees[after] += 1
-            return graph, inDegrees
-        
-        
-        graph, inDegrees = createGraph()     
+        '''
+        V = number of vertices (courses)
+        E = number of edges (len of prerequisites)
+
+        Time: O(V + E)
+            Note: for the while loop, we actually go through each nodes and edge at most once => O(E + V)
+        Space: O(V + E)
+        '''
+
+        num_taken = 0
         queue = deque()
-        numTaken = 0
-        
-        for i in range(numCourses):
-            if inDegrees[i] == 0:
+        in_degree = [0 for _ in range(numCourses)]
+        graph = defaultdict(list)
+
+        for next_course, prev_course in prerequisites:
+            in_degree[next_course] += 1
+            graph[prev_course].append(next_course)
+
+        for i, val in enumerate(in_degree):
+            if val == 0:
                 queue.append(i)
-                
+
         while queue:
-            size = len(queue)
-            for _ in range(size):
-                i = queue.popleft()
-                numTaken += 1
-                for j in graph[i]:
-                    inDegrees[j] -= 1
-                    if inDegrees[j] == 0:
-                        queue.append(j)
-                        
-        return numTaken == numCourses
+            course = queue.popleft()
+            num_taken += 1
+
+            for next_course in graph[course]:
+                in_degree[next_course] -= 1
+                if in_degree[next_course] == 0:
+                    queue.append(next_course)
+
+        return num_taken == numCourses
