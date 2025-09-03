@@ -19,6 +19,7 @@ class Solution:
         Space: O(1)
         '''
 
+        '''
         # optional
         # ranks.sort()
 
@@ -44,6 +45,39 @@ class Solution:
                 low = mid + 1
 
         return best_time
+        '''
+
+        '''
+        Still binary search, but a small adjustment to avoid sorting
+        but still faster than iterating through the array
+        Trade-off: slightly bigger space complexity
+        => Counter()
+        '''
+
+        rank_freq = Counter(ranks)
+        best_rank, worst_rank = max(rank_freq), min(rank_freq)
+        
+        def is_possible(target):
+            cars_repaired = 0
+            for rank, freq in rank_freq.items():
+                cars_repaired += int(sqrt(target / rank)) * freq
+                if cars_repaired >= cars:
+                    return True
+            return False
+
+        low, high = 1, worst_rank * cars * cars
+        best_time = high
+
+        while low <= high:
+            mid = low + (high - low) // 2
+            if is_possible(mid):
+                best_time = mid
+                high = mid - 1
+            else:
+                low = mid + 1
+        
+        return best_time
+
 
 
 
