@@ -6,6 +6,15 @@ class Solution:
 
         Time: 
             O(nlog(M) + nlog(n)) if sorting ranks 
+            O(nlog(M)) if not sorted
+            However, this is in big-O perspective
+            In real world, we don't know which is faster
+                - sorting first: is_possible() is more likely
+                    to terminate early -> better time
+                - not sorting: don't have O(nlog(n)) from sorting
+                    but in the worst case, if ranks is in descending order,
+                    is_possible() may not terminate early, especially if 
+                    target time is narrow down (smaller)
 
         Space: O(1)
         '''
