@@ -42,12 +42,12 @@ class Solution:
 
         n = len(consec_pair_sums)
 
-        # return sum([consec_pair_sums[i] for i in range(n - 1, n - (k-1) - 1, -1)]) - sum([consec_pair_sums[i] for i in range(k-1)])
+        return sum([consec_pair_sums[i] for i in range(n - 1, n - (k-1) - 1, -1)]) - sum([consec_pair_sums[i] for i in range(k-1)])
+
         # a better way to calculate difference of max and min sums
+        # res = 0
+        # for i in range(k - 1):
+        #     res += consec_pair_sums[n - 1 - i] - consec_pair_sums[i]
 
-        res = 0
-        for i in range(k - 1):
-            res += consec_pair_sums[n - 1 - i] - consec_pair_sums[i]
-
-        return res
+        # return res
 
