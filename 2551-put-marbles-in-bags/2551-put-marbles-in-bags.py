@@ -22,13 +22,13 @@ class Solution:
         4,8,6,_
 
         score = first num + last num + sum(consec pairs of weight we selected)
+        '''
 
+        '''
+        n = number of marbles
 
-        1 4 2 5 2
-        5 6 7 7
-
-        0 1 2 3 4 5 6 7 8 -> n = 9
-        want to get d numbers => 9-d to 9
+        Time: O(nlog(n))
+        Space: O(n) - Python's sorting takes O(n) extra space
         '''
 
         if k == 1:
@@ -41,7 +41,5 @@ class Solution:
         consec_pair_sums.sort()
 
         n = len(consec_pair_sums)
-        # print(consec_pair_sums)
-        # print(n - 1, n - (k-1))
 
         return sum([consec_pair_sums[i] for i in range(n - 1, n - (k-1) - 1, -1)]) - sum([consec_pair_sums[i] for i in range(k-1)])
