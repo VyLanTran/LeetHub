@@ -6,6 +6,10 @@
 #         self.right = right
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        if root is None:
+        '''
+        Time: O(n)
+        Space: O(n) - stack size if the tree is a chain
+        '''
+        if not root:
             return 0
         return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
