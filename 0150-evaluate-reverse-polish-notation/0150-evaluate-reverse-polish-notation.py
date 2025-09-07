@@ -1,20 +1,8 @@
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
         '''
-        ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]
-         i.    i. i.  i.   i.  i.   i.  i.   i
-
-        stack: "0"
-
-        if isnumeric():
-            add to stack
-        else:
-            op2 = pop()
-            op1 = pop()
-            res = op1 <operand> op2
-            push res to stack
-
-        -6 / 4 = -1.5 -> 0
+        Time: O(n)
+        Space: O(n)
         '''
 
         res = 0
