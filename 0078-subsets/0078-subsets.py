@@ -1,20 +1,17 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         '''
-        0, 1, 2
-        1, 2, 3
-        deep copy
-        f(i = 0, [])
-            # skip
-            f(i = 1, [])
-                f(i = 2, [])
-                    f(i = 3, [])
-                        res.append(deepcopy(arr))
-                        return
-                    f(i = 3, [3])
-                    arr.pop()
-                f(i = 2, [2])
+                i = 0
+        i=1                 i=1
+    i=2     i=2
 
+        depth = n
+        1 + 2 + 4 + 8 + ... + 2^(n-1)
+        S = 2^0 + 2^1 + ... + 2^(n-1)
+        2S=       2^1 + ... + 2^(n-1) + 2^n
+        S = 2^n - 2^0 
+        Time: O(2^n)
+        Space: O(n) - the temp arr. We don't count the answer as auxiliary space
         ''' 
 
         res = []
