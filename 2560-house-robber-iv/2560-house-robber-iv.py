@@ -1,6 +1,12 @@
 class Solution:
     def minCapability(self, nums: List[int], k: int) -> int:
 
+        '''
+        k = max(nums)
+        Time: O(klog(n))
+        Space: O(1)
+        '''
+
         def is_possible(target):
             i = 0
             houses_robbed = 0
