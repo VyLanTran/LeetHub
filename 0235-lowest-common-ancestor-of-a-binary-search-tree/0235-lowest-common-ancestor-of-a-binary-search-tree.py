@@ -7,12 +7,18 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        '''
+        Time: O(n) - because in the worst case, we go through all nodes
+        Space: O(n) - stack size in case tree looks like a chain
+       
+        '''
         if not root:
             return None
-        if root.val == p.val or root.val == q.val:
+        if root == p or root == q:
             return root
         left = self.lowestCommonAncestor(root.left, p, q)
         right = self.lowestCommonAncestor(root.right, p, q)
-        if not left:
-            return right
-        return root if right else left
+        if left and right:
+            return root
+        return left if left else right
+
