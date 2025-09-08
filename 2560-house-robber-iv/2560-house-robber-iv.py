@@ -1,11 +1,11 @@
 class Solution:
     def minCapability(self, nums: List[int], k: int) -> int:
         '''
-        targets = [1, 2, 3, 7, 9]
-
-        is_possible(target):
-            # is it possible to store from >= k houses st 
-            # max money <= target
+        k = max(nums)
+        Time: O(nlog(n) + nlog(k))
+            - sorted: O(nlog(n))
+            - binary search: O(nlog(k))
+        Space: O(n) - using set
         '''
 
         targets = set(nums)
