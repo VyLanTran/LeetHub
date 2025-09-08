@@ -10,7 +10,7 @@ class Solution:
         S = 2^0 + 2^1 + ... + 2^(n-1)
         2S=       2^1 + ... + 2^(n-1) + 2^n
         S = 2^n - 2^0 
-        Time: O(2^n)
+        Time: O(n*2^n) - for each subset, it takes O(n) for deepcopy
         Space: O(n) - the temp arr. We don't count the answer as auxiliary space
         ''' 
 
@@ -27,4 +27,3 @@ class Solution:
 
         rec(0, [])
         return res
-
