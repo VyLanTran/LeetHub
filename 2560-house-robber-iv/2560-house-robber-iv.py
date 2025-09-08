@@ -2,8 +2,8 @@ class Solution:
     def minCapability(self, nums: List[int], k: int) -> int:
 
         '''
-        k = max(nums)
-        Time: O(klog(n))
+        m = max(nums)
+        Time: O(mlog(n))
         Space: O(1)
         '''
 
