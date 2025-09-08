@@ -6,6 +6,12 @@
 #         self.right = right
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+
+        '''
+        Time: O(n)
+        Space: O(n) - actually, O(n/2) since the largest size at a time is when it holds the broadest level (last level when tree is balanced)
+        '''
+
         if not root:
             return []
         queue = deque([root])
