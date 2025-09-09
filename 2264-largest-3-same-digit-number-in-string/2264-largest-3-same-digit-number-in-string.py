@@ -1,5 +1,9 @@
 class Solution:
     def largestGoodInteger(self, num: str) -> str:
+        '''
+        Time: O(n)
+        Space: O(1)
+        '''
         max_digit = -1
         i = 0
 
