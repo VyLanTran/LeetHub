@@ -1,7 +1,10 @@
 class Solution:
     def validWordAbbreviation(self, word: str, abbr: str) -> bool:
         '''
-        
+        m = len(word)
+        n = len(abbr)
+        Time: O(min(m, n))
+        Space: O(n)
         '''
 
         word_len, abbr_len = len(word), len(abbr)
