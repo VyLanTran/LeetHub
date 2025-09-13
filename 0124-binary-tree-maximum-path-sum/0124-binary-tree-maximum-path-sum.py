@@ -6,6 +6,10 @@
 #         self.right = right
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        '''
+        Time: O(n)
+        Space: O(n) - stack size in case the tree is a chain
+        '''
 
         res = float('-inf')
 
