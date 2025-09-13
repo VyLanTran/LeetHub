@@ -1,17 +1,5 @@
 class Solution:
     def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
-        '''
-        This    is    an
-        0123456789012345
-
-        example  of text
-        0123456789012345
-
-        acknowledgment  
-
-        
-        '''
-
         def insert_spaces(num_spaces):
             return " " * num_spaces
 
