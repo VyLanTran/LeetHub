@@ -4,7 +4,7 @@ class Solution:
         We should use cache, however, for the test cases available for this problem, 
         not using cache is faster
 
-        Time: O(m^n^2)
+        Time: O(m * n * 3^k)
         Space: O(mnk) if we use cache
         '''
         rows, cols = len(board), len(board[0])
