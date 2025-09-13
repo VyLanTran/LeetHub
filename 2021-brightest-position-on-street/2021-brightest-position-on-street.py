@@ -30,11 +30,9 @@ class Solution:
             start, end = center - width, center + width
             map[start] += 1
             map[end + 1] -= 1
-        
-        pairs = list(map.items())
-        pairs.sort(key=lambda x:x[0])
 
-        for key, val in pairs:
+        for key in sorted(map.keys()):
+            val = map[key]
             cur_light += val
             if cur_light > max_light:
                 max_light = cur_light
