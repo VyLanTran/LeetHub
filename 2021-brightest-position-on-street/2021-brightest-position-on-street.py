@@ -17,6 +17,9 @@ class Solution:
         -5, -1, 0, 1, 4, 6, 7
          1,  1, 0, 1,-1,-1,-1
     0,   1,  2, 2, 3, 2, 1, 0    
+
+        Time: O(nlog(n))
+        Space: O(n)
         '''
 
         map = defaultdict(int)
