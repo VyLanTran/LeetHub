@@ -1,29 +1,19 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        n = len(nums)
-        incr_sequence = []
-        
-        def findFirstLarger(target):
-            left, right = 0, len(incr_sequence) - 1
-            res = 0
-            while left <= right:
-                mid = left + (right - left) // 2
-                if incr_sequence[mid] > target:
-                    res = mid
-                    right = mid - 1
-                elif incr_sequence[mid] == target:
-                    return mid
-                else:
-                    left = mid + 1
-            return res
-        
-        for num in nums:
-            if len(incr_sequence) == 0 or num > incr_sequence[-1]:
-                incr_sequence.append(num)
-            else:
-                # find first num that is < num
-                index = findFirstLarger(num)
-                incr_sequence[index] = num
-        return len(incr_sequence)
-                
-        
+        '''
+         0,1,2,3,4,5,  6, 7
+        10,9,2,5,3,7,101,18
+         1,1,1,2,2,3,  4,4
+
+        '''
+        nums_len = len(nums)
+        count = [1 for _ in range(nums_len)]
+        res = 1
+
+        for i in range(1, nums_len):
+            for j in range(i):
+                if nums[j] < nums[i]:
+                    count[i] = max(count[i], 1 + count[j])
+            res = max(res, count[i])
+
+        return res
