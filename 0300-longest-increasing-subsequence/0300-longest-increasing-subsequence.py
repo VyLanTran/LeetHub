@@ -1,10 +1,8 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         '''
-         0,1,2,3,4,5,  6, 7
-        10,9,2,5,3,7,101,18
-         1,1,1,2,2,3,  4,4
-
+        Time: O(n^2)
+        Space: O(n)
         '''
         nums_len = len(nums)
         count = [1 for _ in range(nums_len)]
