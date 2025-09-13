@@ -1,5 +1,7 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
+        '''
+        '''
         rows, cols = len(board), len(board[0])
         cache = {}
 
@@ -15,11 +17,10 @@ class Solution:
                 cache[(r, c, i)] = False
                 return False
 
-            visited_char = board[r][c]
             board[r][c] = "*"
             res = dfs(r - 1, c, i + 1) or dfs(r + 1, c, i + 1) or dfs(r, c - 1, i + 1) or dfs(r, c + 1, i + 1)
             cache[(r, c, i)] = res
-            board[r][c] = visited_char
+            board[r][c] = word[i]
             return res
 
         for r in range(rows):
