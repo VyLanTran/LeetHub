@@ -1,6 +1,11 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         '''
+        We should use cache, however, for the test cases available for this problem, 
+        not using cache is faster
+
+        Time: O(m^n^2)
+        Space: O(mnk) if we use cache
         '''
         rows, cols = len(board), len(board[0])
         # cache = {}
