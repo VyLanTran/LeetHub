@@ -6,6 +6,7 @@ class Solution:
 
         Time: O(m * n * 3^k)
         Space: O(mnk) if we use cache
+                O(k) if not using cache
         '''
         rows, cols = len(board), len(board[0])
         # cache = {}
