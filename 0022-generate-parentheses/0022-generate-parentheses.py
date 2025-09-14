@@ -1,31 +1,5 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        '''
-        f( open_count, close_count)
-            if both = 0:
-                join to make a string then append to res
-                return
-            if open_count > 0:
-                arr.append("(")
-                f(, open_count - 1, close_count)
-                arr.pop()
-            if open_count < n:
-                arr.append(")")
-                f(, open_count, close_count - 1)
-                arr.pop()
-
-        res = "((()))"
-        arr = (, (, (, ), )
-        f(3, 3)
-            f(2, 3)
-                f(1, 3)
-                    f(0, 3)
-                        f(0, 2)
-                            f(0, 1)
-                                f(0, 0) => "((()))"
-
-        '''
-
         res = []
         arr = []
 
