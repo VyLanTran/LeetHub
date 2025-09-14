@@ -1,37 +1,49 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        
-#         dp = dict()
-        
-#         def rec(n, open):
-#             if (n, open) in dp:
-#                 return dp[(n, open)]
-#             if n == 0:
-#                 return [")" * open]
-#             val = set()
-#             arr1 = rec(n - 1, open + 1)
-#             for s in arr1:
-#                 val.add("(" + s)
-#             if open > 0:
-#                 arr2 = rec(n, open - 1)
-#                 for s in arr2:
-#                     val.add(")" + s)
-#             dp[(n, open)] = val
-#             return val
-            
-#         return rec(n, 0)
+        '''
+        f( open_count, close_count)
+            if both = 0:
+                join to make a string then append to res
+                return
+            if open_count > 0:
+                arr.append("(")
+                f(, open_count - 1, close_count)
+                arr.pop()
+            if open_count < n:
+                arr.append(")")
+                f(, open_count, close_count - 1)
+                arr.pop()
+
+        res = "((()))"
+        arr = (, (, (, ), )
+        f(3, 3)
+            f(2, 3)
+                f(1, 3)
+                    f(0, 3)
+                        f(0, 2)
+                            f(0, 1)
+                                f(0, 0) => "((()))"
+
+        '''
 
         res = []
-    
-        def rec(left, right, s):
-            if len(s) == n * 2:
-                res.append(s)
+        arr = []
+
+        def rec(open_count, close_count):
+            if open_count < 0 or close_count < 0:
                 return
-            if left < n:
-                rec(left + 1, right, s + "(")
-            if right < left:
-                rec(left, right + 1, s + ")")
-        rec(0, 0, "")
+            if open_count == 0 and close_count == 0:
+                res.append("".join(arr))
+                return
+            if open_count > 0:
+                arr.append("(")
+                rec(open_count - 1, close_count)
+                arr.pop()
+            if close_count > open_count:
+                arr.append(")")
+                rec(open_count, close_count - 1)
+                arr.pop()
+
+        rec(n, n)
+
         return res
-            
-            
