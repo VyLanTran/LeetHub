@@ -1,9 +1,11 @@
 class Solution:
     def maximumSubtreeSize(self, edges: List[List[int]], colors: List[int]) -> int:
         '''
-                0,1
-            1,2       2,1
+        n = number of nodes
+        m = number of edges
 
+        Time: O(m)
+        Space: O(m)
         '''
         max_count = 1
 
