@@ -1,18 +1,20 @@
 class Solution:
     def isValid(self, s: str) -> bool:
+        '''
+        Time: O(n)
+        Space: O(n)
+        '''
         stack = []
-        bracket_map = {
+        pairs = {
             ')': '(',
             '}': '{',
             ']': '['
         }
-
         for char in s:
             if char in "({[":
                 stack.append(char)
-            elif stack and stack[-1] == bracket_map[char]:
+            elif stack and stack[-1] == pairs[char]:
                 stack.pop()
             else:
                 return False
-        
         return len(stack) == 0
