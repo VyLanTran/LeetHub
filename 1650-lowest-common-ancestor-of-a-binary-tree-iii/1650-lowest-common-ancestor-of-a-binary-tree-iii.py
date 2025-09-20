@@ -11,7 +11,9 @@ class Node:
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
         '''
-        
+        n = number of nodes in the tree
+        Time: O(n) - in the worse case (tree looks like a linked list)
+        Space: O(1)
         '''
         a, b = p, q
 
