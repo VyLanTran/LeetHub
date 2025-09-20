@@ -1,7 +1,8 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         '''
-        
+        Time: O(nlog(n))
+        Space: O(n)
         '''
 
         intervals.sort(key=lambda x: x[0])
