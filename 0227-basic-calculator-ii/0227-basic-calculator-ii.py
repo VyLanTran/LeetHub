@@ -1,50 +1,34 @@
 class Solution:
     def calculate(self, s: str) -> int:
-        '''
-
-        if char is number:
-            val = ""
-            traverse until hit a non-numeric val
-            val -> int
-            put into stack
-       
-
-        sum all the value in stack
-
-        '''
-
+        last_val, last_operator = None, None
         i = 0
-        stack = []
-        
+        res = 0
+
         while i < len(s):
             char = s[i]
             if char == ' ':
                 i += 1
             elif char in "+-*/":
+                last_operator = char
                 i += 1
-                op2 = ""
-                while i < len(s) and s[i] == ' ':
-                    i += 1
-                while i < len(s) and s[i].isnumeric():
-                    op2 += s[i]
-                    i += 1
-                op2 = int(op2)
-
-                if char == '*':
-                    op1 = stack.pop()
-                    stack.append(op1 * op2)
-                elif char == '/':
-                    op1 = stack.pop()
-                    stack.append(int(op1 / op2))
-                elif char == '+':
-                    stack.append(op2)
-                else:
-                    stack.append(-op2)
             else:
-                op2 = ""
+                cur_val = ""
                 while i < len(s) and s[i].isnumeric():
-                    op2 += s[i]
+                    cur_val += s[i]
                     i += 1
-                stack.append(int(op2))
-            
-        return sum(stack)
+                cur_val = int(cur_val)
+                if not last_operator:
+                    last_val = cur_val
+                    continue
+                elif last_operator in "+-":
+                    res += last_val
+                    last_val = cur_val if last_operator == '+' else -cur_val
+                elif last_operator == '*':
+                    last_val *= cur_val
+                elif last_operator == '/':
+                    last_val = int(last_val / cur_val)
+        res += last_val 
+
+        return res
+
+        
