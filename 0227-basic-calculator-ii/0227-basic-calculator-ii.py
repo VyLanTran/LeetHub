@@ -1,5 +1,10 @@
 class Solution:
     def calculate(self, s: str) -> int:
+        '''
+        Time: O(n)
+        Space: O(1)
+        '''
+
         last_val, last_operator = None, None
         i = 0
         res = 0
