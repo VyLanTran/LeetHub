@@ -1,10 +1,8 @@
 class Solution:
     def numPairsDivisibleBy60(self, time: List[int]) -> int:
         '''
-        {
-            0: 1, 2
-        }
-        + 1 + 2
+        Time: O(n)
+        Space: O(1)
         '''
 
         song_mod = defaultdict(int)
