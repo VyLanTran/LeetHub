@@ -13,20 +13,20 @@ class Solution:
         Time: O(max(m, n))
         Space: O(1) - no auxiliary space
         '''
-        carry_on = 0
+        carry = 0
         dummy = ListNode(-1)
         cur = dummy
 
         while l1 or l2:
             digit1 = l1.val if l1 else 0
             digit2 = l2.val if l2 else 0
-            cur.next = ListNode((digit1 + digit2 + carry_on) % 10)
-            carry_on = (digit1 + digit2 + carry_on) // 10
+            cur.next = ListNode((digit1 + digit2 + carry) % 10)
+            carry = (digit1 + digit2 + carry) // 10
             cur = cur.next
             l1 = l1.next if l1 else None
             l2 = l2.next if l2 else None
 
-        if carry_on > 0:
-            cur.next = ListNode(carry_on)
+        if carry > 0:
+            cur.next = ListNode(carry)
 
         return dummy.next
