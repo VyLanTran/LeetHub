@@ -1,6 +1,9 @@
 class Solution:
     def largestTriangleArea(self, points: List[List[int]]) -> float:
-        
+        '''
+        Time: O(n^3)
+        Space: O(1)
+        '''
         def find_side(p1, p2):
             x1, y1 = p1
             x2, y2 = p2
