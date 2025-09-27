@@ -1,23 +1,8 @@
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
         '''
-        PAYPALISHIRING
-        01210
-
-        0: []
-        1: []
-        2: []
-
-        cur_row = 0
-        direction = 1
-        i: 0 to n-1
-            add s[i] to map[cur_row]
-            if dir == 1 and cur_row == n - 1:
-                dir = -dir
-            elif dir == -1 and cur_row == 0:
-                dir = -dir
-
-            cur_row += dir
+        Time: O(n)
+        Space: O(n)
         '''
 
         if numRows == 1:
