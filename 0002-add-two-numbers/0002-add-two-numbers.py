@@ -5,6 +5,14 @@
 #         self.next = next
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+
+        '''
+        m = number of digits of l1
+        n = number of digits of fl2
+
+        Time: O(max(m, n))
+        Space: O(1) - no auxiliary space
+        '''
         carry_on = 0
         dummy = ListNode(-1)
         cur = dummy
