@@ -6,6 +6,9 @@ class Solution:
             1. Take dp[i - 2] ways + the last time is a 2-step
             2. Take dp[i - 1] ways + the last time is a 1-step
         => Finbonacci
+
+        Time: O(n)
+        Space: O(1)
         '''
 
         if n == 1:
