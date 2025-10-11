@@ -1,18 +1,8 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         '''
-         0,1, 2,3, 4,5,6, 7,8
-        -2,1,-3,4,-1,2,1,-5,4
-
-        max_global_sum
-        for each index i, want to find
-            sum[i] = max sum of a subarray that ends with nums[i]
-            update max_sum
-
-        sum[i]
-            sum[i - 1] + nums[i]
-            nums[i]
-        keep track of prevoius max_local_sum = sum[i - 1]
+        Time: O(n)
+        Space: O(1)
         '''
 
         nums_len = len(nums)
