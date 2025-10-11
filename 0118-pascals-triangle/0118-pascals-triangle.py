@@ -1,15 +1,11 @@
 class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
         '''
-        numRows = 1 or 2 => base case
+        n = numRows
+        the length of the n-th row is n
 
-        res = [[1], [1, 1]]
-        for ith row
-            cur_row = [1]
-            for each j from 0 to len(res[-1]) - 1:
-                previous_row
-                cur_row.append(prev_row[j] + prev_row[j + 1])
-            cur_row.append(1)
+        Time: O(1 + 2 + 3 + .... + (n-1)) = O(n^2)
+        Space: O(1)
         '''
 
         if numRows == 1:
