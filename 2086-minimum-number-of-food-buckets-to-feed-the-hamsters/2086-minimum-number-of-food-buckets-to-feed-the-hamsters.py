@@ -1,21 +1,8 @@
 class Solution:
     def minimumBuckets(self, hamsters: str) -> int:
         '''
-        if any hamster has 
-        (left out of bound or left == H) and (right out of bound or right == H)
-        then return -1
-
-        012345678
-        .H..H.H.H
-          x. x
-        bucket index: hamsters that this bucket feeds
-
-        0: 1
-        2: 1
-        3: 4
-        5: 4, 6
-        7: 6, 8
-
+        Time: O(n)
+        Space: O(1)
 
         '''
 
