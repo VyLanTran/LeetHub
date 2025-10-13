@@ -1,7 +1,7 @@
 class Solution:
     def longestSquareStreak(self, nums: List[int]) -> int:
         '''
-        Time: O(n)
+        Time: O(nlog(n))
         Space: O(n)
         '''
 
