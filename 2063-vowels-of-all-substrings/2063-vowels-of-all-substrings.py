@@ -1,24 +1,13 @@
 class Solution:
     def countVowels(self, word: str) -> int:
         '''
-        len = n 
-        012
-        aba
+        Time: O(n)
+        Space: O(1)
 
-        a: contribute to 1 * 3 = 3
-        a: 3 * 1 = 3
-
-        0123456
-        xxxx*xx
-        
-        index of * is 4
         a substring that contains * is any string that 
-            start <= 4 => 5 options
-            end >= 4 => 3 options
-        => 15 
+            start <= i => i + 1 options
+            end >= i => n -i options
         => (index + 1) * (n - index)
-
-        
         '''
 
         res = 0
