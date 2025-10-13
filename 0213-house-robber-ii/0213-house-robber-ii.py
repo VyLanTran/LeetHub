@@ -34,14 +34,3 @@ class Solution:
         max_without_last_house = linear_rob(0, n - 2)
         max_without_first_house = linear_rob(1, n - 1)
         return max(max_without_last_house, max_without_first_house)
-
-        '''
-        0,1,2,3,  4
-        1,3,1,3,100
-              i
-        a = 3, 1
-        b = 1, 6
-        c = 6, 101
-        f([1,3,1,3])
-        f([3,1,3,100])
-        '''
