@@ -1,7 +1,8 @@
 class Solution:
     def longestSquareStreak(self, nums: List[int]) -> int:
         '''
-        Time: O(nlog(n))
+        n = len(nums), k = max(nums)
+        Time: O(nlog(k))
         Space: O(n)
         '''
 
@@ -9,6 +10,8 @@ class Solution:
         dp = {}
         max_len = 1
 
+        # log(num)
+        # leverage dp => n * log(num)
         def f(num):
             if sqrt(num) not in nums:
                 dp[num] = 1
