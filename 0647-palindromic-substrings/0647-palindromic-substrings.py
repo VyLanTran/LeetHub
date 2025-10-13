@@ -1,5 +1,9 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
+        '''
+        Time: O(n)
+        Space: O(1)
+        '''
         n = len(s)
 
         def extend_palindrome(a, b):
