@@ -4,6 +4,7 @@ class Solution:
         n = len(strs)
         k = max len of a string
         Time: O(kn)
+        Space: O(1)
         '''
 
         n = len(strs)
