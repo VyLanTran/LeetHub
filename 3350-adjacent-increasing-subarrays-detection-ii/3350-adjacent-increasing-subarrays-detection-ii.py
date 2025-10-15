@@ -1,5 +1,9 @@
 class Solution:
     def maxIncreasingSubarrays(self, nums: List[int]) -> int:
+        '''
+        Time: O(n)
+        Space: O(1)
+        '''
         pre_count, count = 0, 1
         n = len(nums)
         i = 0
