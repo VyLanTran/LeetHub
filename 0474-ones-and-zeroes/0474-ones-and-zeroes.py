@@ -3,8 +3,13 @@ class Solution:
         '''
         k = number of strings in strs
         N = total number of char in all strings
-        Time: O(N + kmn)
-        Space: O(kmn)
+
+        Top-down:
+            Time: O(N + kmn)
+            Space: O(kmn)
+        Bottom-up:
+            Time: O(N + kmn)
+            Space: O(mn)
         '''
 
         """
