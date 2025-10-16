@@ -80,8 +80,18 @@ class Solution:
 
         for s in strs:
             zeroes, ones = count_zeroes_ones(s)
-            # if we want to use a single dp, we must go backward (rows - 1 back) and (cols - 1) back
-            # because otherwise dp[r - zeroes][c - ones] is overwritten with the res of current layer
+            '''
+            if we want to use a single dp, we must go backward (rows - 1 back) and (cols - 1) back
+            because otherwise dp[r - zeroes][c - ones] is overwritten with the res of current layer
+            Explanation: 
+            The term dp[r][c] on the left is playing the role of f(i, r, c).
+
+            The two things you read are:
+
+            dp[r][c] → this is still f(i-1, r, c) because we haven’t overwritten it yet at this (r, c) for the current item.
+
+            dp[r - z][c - o] → because we’re going downwards, when you reach (r, c) the cell (r - z, c - o) still holds f(i-1, r - z, c - o); it hasn’t been updated for the current item yet (write happens later when the loops arrive there).
+            '''
             for r in range(rows - 1, zeroes - 1, -1):
                 for c in range(cols - 1, ones - 1, -1):
                     dp[r][c] = max(dp[r][c], 1 + dp[r - zeroes][c - ones])
