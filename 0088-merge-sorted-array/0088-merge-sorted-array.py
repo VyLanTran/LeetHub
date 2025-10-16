@@ -4,7 +4,8 @@ class Solution:
         Do not return anything, modify nums1 in-place instead.
         """
         '''
-        
+        Time: O(m + n)
+        Space: O(1)
         '''
 
         i, j, k = m - 1, n - 1, m + n - 1
