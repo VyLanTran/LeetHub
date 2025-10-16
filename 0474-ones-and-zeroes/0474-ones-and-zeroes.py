@@ -48,10 +48,11 @@ class Solution:
         """
 
         strs_len = len(strs)
-        freq = []
+        # freq = []
         rows, cols = m + 1, n + 1
-        prev = [[0 for _ in range(cols)] for _ in range(rows)]
-        cur = [[0 for _ in range(cols)] for _ in range(rows)]
+        # prev = [[0 for _ in range(cols)] for _ in range(rows)]
+        # cur = [[0 for _ in range(cols)] for _ in range(rows)]
+        dp = [[0 for _ in range(cols)] for _ in range(rows)]
 
         def count_zeroes_ones(s):
             zeroes, ones = 0, 0
@@ -62,21 +63,29 @@ class Solution:
                     ones += 1
             return (zeroes, ones)
 
+        # for s in strs:
+        #     freq.append(count_zeroes_ones(s))
+
+        # Bottom-up (2 dp, very slow because of deepcopy)
+        # for i in range(1, strs_len + 1):
+        #     actual_index = i - 1
+        #     zeroes, ones = freq[actual_index]
+        #     for r in range(0, rows):
+        #         for c in range(0, cols):
+        #             if zeroes > r or ones > c:
+        #                 cur[r][c] = prev[r][c]
+        #             else:
+        #                 cur[r][c] = max(1 + prev[r - zeroes][c - ones], prev[r][c])
+        #     prev = copy.deepcopy(cur)
+
         for s in strs:
-            freq.append(count_zeroes_ones(s))
+            zeroes, ones = count_zeroes_ones(s)
+            # if we want to use a single dp, we must go backward (rows - 1 back) and (cols - 1) back
+            # because otherwise dp[r - zeroes][c - ones] is overwritten with the res of current layer
+            for r in range(rows - 1, zeroes - 1, -1):
+                for c in range(cols - 1, ones - 1, -1):
+                    dp[r][c] = max(dp[r][c], 1 + dp[r - zeroes][c - ones])
 
-        # Bottom-up
-        for i in range(1, strs_len + 1):
-            actual_index = i - 1
-            zeroes, ones = freq[actual_index]
-            for r in range(0, rows):
-                for c in range(0, cols):
-                    if zeroes > r or ones > c:
-                        cur[r][c] = prev[r][c]
-                    else:
-                        cur[r][c] = max(1 + prev[r - zeroes][c - ones], prev[r][c])
-            prev = copy.deepcopy(cur)
-
-        return cur[-1][-1]
+        return dp[-1][-1]
 
       
