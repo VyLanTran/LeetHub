@@ -38,37 +38,29 @@ class Solution:
         size = len(nums)
         n = size // 3
         max_heap = []
-        sum_first, last_used = [None] * size, [None] * size
+        sum_first = [None] * size
         cur_sum = 0
-        # print(n)
 
         for i, num in enumerate(nums):
             if len(max_heap) < n:
                 heappush(max_heap, -num)
                 cur_sum += num
-                # last_used[i] = i
             elif -max_heap[0] > num:
-                # print(i, num, max_heap)
                 removed_num = -heappop(max_heap)
                 heappush(max_heap, -num)
                 cur_sum += num - removed_num
-                # last_used[i] = i
-            # else:
-            #     last_used[i] = last_used[i - 1]
 
             if len(max_heap) >= n:
                 sum_first[i] = cur_sum
-        # print(sum_first)
+
         cur_sum = 0
         min_heap = []
         res = float('inf')
 
         for i in range(size - 1, -1, -1):
             j = i + 1
-            # print(f"i={i}, j={j}")
             if j + n <= size:
                 if i >= n - 1:
-                    # print(f"right_start={j}, left_end={i}, cur_right_sum={cur_sum}")
                     res = min(res, sum_first[i] - cur_sum)
             num = nums[i]
             if len(min_heap) < n:
