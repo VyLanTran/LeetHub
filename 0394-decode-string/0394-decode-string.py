@@ -1,12 +1,8 @@
 class Solution:
     def decodeString(self, s: str) -> str:
         '''
-        3[a]2[bc]
-        iiii
-        stack = 
-
-        string = a
-        freq - 
+        Time: O(n)
+        Space: O(n)
         '''
 
         n = len(s)
