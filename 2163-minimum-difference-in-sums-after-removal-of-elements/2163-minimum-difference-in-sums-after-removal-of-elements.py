@@ -32,7 +32,9 @@ class Solution:
             16-13=3
         i = 1: 17
 
-
+        n = len // 3
+        Time: O(3n + 3n*log(n)) = O(nlog(n))
+        Space: O(n)
         '''
 
         size = len(nums)
