@@ -1,25 +1,27 @@
 class Solution:
     def largestTriangleArea(self, points: List[List[int]]) -> float:
-        def find_side_length(a, b):
-            x1, y1 = a
-            x2, y2 = b
+        '''
+        Time: O(n^3)
+        Space: O(1)
+        '''
+        def find_side(p1, p2):
+            x1, y1 = p1
+            x2, y2 = p2
             return sqrt((x1-x2)**2 + (y1-y2)**2)
 
+        def find_squared_area(a, b, c):
+            s = (a + b + c) / 2
+            return s * (s - a) * (s - b) * (s - c)
+
         n = len(points)
-        res = 0
+        max_area = 0
+
         for i in range(n):
             for j in range(i + 1, n):
                 for k in range(j + 1, n):
-                    p1, p2, p3 = points[i], points[j], points[k]
-                    a = find_side_length(p1, p2)
-                    b = find_side_length(p1, p3)
-                    c = find_side_length(p2, p3)
-                    s = (a + b + c) / 2
-                    m = s * (s-a) * (s-b) * (s-c)
-                    # res = max(res, sqrt(s * (s-a) * (s-b) * (s-c)))
-                    # print(m)
-                    # if m < 0:
-                    #     print(a, b, c, s, m)
-                    if m >= 0:
-                        res = max(res, sqrt(m))
-        return res
+                    a = find_side(points[i], points[j])
+                    b = find_side(points[i], points[k])
+                    c = find_side(points[j], points[k])
+                    max_area = max(max_area, find_squared_area(a, b, c))
+
+        return sqrt(max_area)
