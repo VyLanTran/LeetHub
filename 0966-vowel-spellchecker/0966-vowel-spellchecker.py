@@ -1,5 +1,10 @@
 class Solution:
     def spellchecker(self, wordlist: List[str], queries: List[str]) -> List[str]:
+        '''
+        N, M = total characters in all words in wordlist, queries
+        Time: O(N + M)
+        Space: O(N + M)
+        '''
         n, m = len(wordlist), len(queries)
         exact_matches = set(wordlist)
         capitalization_matches = {}
