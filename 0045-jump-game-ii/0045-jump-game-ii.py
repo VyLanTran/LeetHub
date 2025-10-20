@@ -42,10 +42,9 @@ class Solution:
         res = 0
 
         while r < n - 1:
-            new_l = r + 1
-            new_r = r + 1
+            furthest = 0
             for i in range(l, r + 1):
-                new_r = max(new_r, i + nums[i])
-            l, r = new_l, new_r
+                furthest = max(furthest, i + nums[i])
+            l, r = r + 1, furthest
             res += 1
         return res
