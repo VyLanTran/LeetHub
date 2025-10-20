@@ -1,6 +1,9 @@
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
         '''
+        Time: O(mn)
+        Space: O(mn)
+        
         f(i, j) = res for word1[0, i] and word2[0, j]
             if i < 0:
                 if j < 0:
