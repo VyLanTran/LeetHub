@@ -7,20 +7,29 @@
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         '''
-        Time: O(n)
-        Space: O(n) - stack size in case the tree is a chain
+        res = 
+
+        f(node) = max sum of a path passing through node but not branch
+            if node is None:
+                return 0
+            left = f(node.left)
+            right = f(node.right)
+            not_branch_sum = node.val + max(0, left, right)
+            res = max(res, not_branch_sum, node.val + left + right)
+            return not_branch_sum
         '''
 
         res = float('-inf')
 
-        def rec(node):
+        def f(node):
             if not node:
                 return 0
             nonlocal res
-            left_sum = rec(node.left)
-            right_sum = rec(node.right)
-            res = max(res, node.val + max(0, left_sum) + max(0, right_sum))
-            return node.val + max(0, left_sum, right_sum)
+            left_sum = f(node.left)
+            right_sum = f(node.right)
+            not_branch_sum = node.val + max(0, left_sum, right_sum)
+            res = max(res, not_branch_sum, node.val + left_sum + right_sum)
+            return not_branch_sum
 
-        rec(root)
+        f(root)
         return res
