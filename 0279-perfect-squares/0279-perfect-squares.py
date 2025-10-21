@@ -1,14 +1,5 @@
 class Solution:
     def numSquares(self, n: int) -> int:
-        '''
-        f(n)
-            if n is a perfect square:
-                return 1
-            try (sqrt(n))**2 to 1**2:
-                1 + min(f(n - k**2))
-
-        1, 4, 9, 16
-        '''
 
         # dp = {}
 
@@ -45,12 +36,6 @@ class Solution:
                         return count
                     queue.append(val + s)
 
-        '''
-        9, 4, 1
-
-        count = 0
-        queue: 4, 1
-        size = 3
-        '''
+  
 
         
