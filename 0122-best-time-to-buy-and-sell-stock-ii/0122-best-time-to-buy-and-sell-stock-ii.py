@@ -1,12 +1,8 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         '''
-        0,1,2,3,4,5
-        7,1,5,3,6,4
-        l r
-        r r r 
-        res = 0
-        + (7-7) + (5-1)
+        Time: O(n)
+        Space: O(1)
         '''
 
         res = 0
