@@ -20,6 +20,10 @@ class Solution:
         '''
 
 
+        '''
+        Time: O(nk), where k = sum(nums)
+        Space: O(nk)
+        '''
         dp = {}
 
         def f(i, target):
