@@ -1,15 +1,15 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        res, minVal, maxVal = max(nums), 1, 1
+        '''
+        Time: O(n)
+        Space: O(1)
+        '''
+        
+        res = float('-inf')
+        local_max, local_min = 1, 1
+
         for num in nums:
-            if num == 0:
-                res = max(res, num)
-                minVal, maxVal = 1, 1
-            else:
-                minVal, maxVal = min(num, num * minVal, num * maxVal), max(num, num * minVal, num * maxVal)
-                res = max(res, maxVal)
-                
+            local_max, local_min = max(num, num * local_max, num * local_min), min(num, num * local_max, num * local_min)
+            res = max(res, local_max)
+
         return res
-        
-    
-        
