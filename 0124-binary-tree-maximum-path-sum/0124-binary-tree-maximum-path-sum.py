@@ -7,16 +7,8 @@
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         '''
-        res = 
-
-        f(node) = max sum of a path passing through node but not branch
-            if node is None:
-                return 0
-            left = f(node.left)
-            right = f(node.right)
-            not_branch_sum = node.val + max(0, left, right)
-            res = max(res, not_branch_sum, node.val + left + right)
-            return not_branch_sum
+        Time: O(n)
+        Space: O(n) - stack size
         '''
 
         res = float('-inf')
