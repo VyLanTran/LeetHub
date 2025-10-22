@@ -4,14 +4,16 @@ class Solution:
         Time: O(n^2)
         Space: O(n)
         '''
-        nums_len = len(nums)
-        count = [1 for _ in range(nums_len)]
-        res = 1
 
-        for i in range(1, nums_len):
+        res = 1
+        n = len(nums)
+        dp = [1] * n
+
+        for i in range(1, n):
             for j in range(i):
                 if nums[j] < nums[i]:
-                    count[i] = max(count[i], 1 + count[j])
-            res = max(res, count[i])
+                    dp[i] = max(dp[i], 1 + dp[j])
+            res = max(res, dp[i])
 
         return res
+            
