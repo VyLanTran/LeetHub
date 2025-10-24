@@ -1,51 +1,33 @@
 class TrieNode:
     def __init__(self):
-        self.children = {}
         self.is_word = False
+        self.children = {}
+
 
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        def build_tree():
-            root = TrieNode()
-            for word in wordDict:
-                cur = root
-                for i, char in enumerate(word):
-                    if char not in cur.children:
-                        cur.children[char] = TrieNode()
-                    cur = cur.children[char]
-                cur.is_word = True
-            return root
+        root = TrieNode()
+        for word in wordDict:
+            curr = root
+            for c in word:
+                if c not in curr.children:
+                    curr.children[c] = TrieNode()
+                curr = curr.children[c]
 
-        root = build_tree()
-        dp = {-1: True}
+            curr.is_word = True
 
-        def is_word(start, end):
-            if start >= len(s) or end >= len(s):
-                return False
-            cur = root
-            for i in range(start, end + 1):
-                char = s[i]
-                if char not in cur.children:
-                    return False
-                cur = cur.children[char]
-            return cur.is_word
+        dp = [False] * len(s)
+        for i in range(len(s)):
+            if i == 0 or dp[i - 1]:
+                curr = root
+                for j in range(i, len(s)):
+                    c = s[j]
+                    if c not in curr.children:
+                        # No words exist
+                        break
 
-        def f(i):
-            if i < 0:
-                return True
-            if i in dp:
-                return dp[i]
-            for j in range(i + 1):
-                if is_word(j, i):
-                    if f(j - 1):
-                        dp[i] = True
-                        return True
-            dp[i] = False
-            return False
+                    curr = curr.children[c]
+                    if curr.is_word:
+                        dp[j] = True
 
-        # res =  f(len(s) - 1)
-        # print(dp)
-        # return res
-        return f(len(s) - 1)
-
-        # print(is_word(4, 7))
+        return dp[-1]
