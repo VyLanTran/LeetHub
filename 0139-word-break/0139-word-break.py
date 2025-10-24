@@ -1,26 +1,51 @@
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.is_word = False
+
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        '''
-        0 1 2 3 4 5 6 7
-        l e e t c o d e
-      T F F F T _ _ _ _ 
-dp    0 1 2 3 4 5 6 7 8
-        i i   i
-      j 
-        '''
-        
-        wordLen = len(s)
-        dp = [False for _ in range(wordLen + 1)]
-        dp[0] = True
-        wordDict = set(wordDict)
-        
-        for i in range(1, len(dp)):
-            for j in range(i):
-                suffix = s[j:i]
-                if suffix in wordDict and dp[j]:
-                    dp[i] = True
-                    break
-            if not dp[i]:
-                dp[i] = False
-        return dp[-1]
-        
+        def build_tree():
+            root = TrieNode()
+            for word in wordDict:
+                cur = root
+                for i, char in enumerate(word):
+                    if char not in cur.children:
+                        cur.children[char] = TrieNode()
+                    cur = cur.children[char]
+                cur.is_word = True
+            return root
+
+        root = build_tree()
+        dp = {-1: True}
+
+        def is_word(start, end):
+            if start >= len(s) or end >= len(s):
+                return False
+            cur = root
+            for i in range(start, end + 1):
+                char = s[i]
+                if char not in cur.children:
+                    return False
+                cur = cur.children[char]
+            return cur.is_word
+
+        def f(i):
+            if i < 0:
+                return True
+            if i in dp:
+                return dp[i]
+            for j in range(i + 1):
+                if is_word(j, i):
+                    if f(j - 1):
+                        dp[i] = True
+                        return True
+            dp[i] = False
+            return False
+
+        # res =  f(len(s) - 1)
+        # print(dp)
+        # return res
+        return f(len(s) - 1)
+
+        # print(is_word(4, 7))
