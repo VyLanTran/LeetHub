@@ -28,6 +28,8 @@ class Solution:
                     count = 1 + min(prev, dp[j - 1], dp[j])
                 dp[j - 1] = prev
                 prev = count
-            max_side = max(max_side, max(dp), prev)
+            dp[-1] = prev
+            max_side = max(max_side, max(dp))
 
         return max_side ** 2
+    
