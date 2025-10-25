@@ -1,18 +1,8 @@
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
         '''
-        dp = matrix[0]
-        max_side = max(dp)
-        for i from 1 to rows - 1:
-            prev = matrix[i][0]
-            for j from 1 to cols - 1:
-                count = 0
-                if val == 1:
-                    count = 1 + min(prev, dp[j - 1], dp[j])
-                dp[j - 1] = prev
-                prev = count
-        keep track of max(dp[i][j])
-        return max_side ** 2
+        Time: O(mn)
+        Space: O(n)
         '''
 
         rows, cols = len(matrix), len(matrix[0])
