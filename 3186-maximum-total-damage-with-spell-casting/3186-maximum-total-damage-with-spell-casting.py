@@ -1,15 +1,9 @@
 class Solution:
     def maximumTotalDamage(self, power: List[int]) -> int:
         '''
-        0, 1, 2
-        1, 6, 7
-        1, 2, 1
-
-        a = 0
-        b = 1
-        c = 13
+        Time: O(nlog(n))
+        Space: O(n)
         '''
-
         counter = Counter(power)
         power = sorted(list(set(power)))
         n = len(power)
@@ -21,7 +15,9 @@ class Solution:
         c = power[1] * counter[power[1]]
         if power[0] + 2 < power[1]:
             c += b
-        print(f'prev: {a, b, c}')
+        else:
+            c = max(c, b)
+            
         for i in range(2, n):
             cur_damage = power[i] * counter[power[i]]
             pp_power, p_power, cur_power = power[i - 2], power[i - 1], power[i]
@@ -38,5 +34,4 @@ class Solution:
             a, b, c = b, c, temp
 
         return c
-
-                
+       
