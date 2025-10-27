@@ -1,31 +1,21 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        '''
-        0 + 1 + 2 + ... + 2 + 0 + 1
-        0 -> n/2
+        left, right = 0, 0
+        n = len(s)
 
-        Time: O(n^2)
-        Space: O(1)
-        '''
-        s_len = len(s)
-        best_start, best_end = 0, -1
+        def expand(l, r):
+            while l - 1 >= 0 and r + 1 < n and s[l - 1] == s[r + 1]:
+                l -= 1
+                r += 1
+            return l, r
 
-        def expand_palindrome(start, end):
-            while start - 1 >= 0 and end + 1 < s_len and s[start - 1] == s[end + 1]:
-                start -= 1
-                end += 1
-            return start, end
-
-        for i in range(s_len):
-            start, end = expand_palindrome(i, i)
-            if end - start > best_end - best_start:
-                best_start, best_end = start, end
-            if i < s_len - 1 and s[i] == s[i + 1]:
-                start, end = expand_palindrome(i, i + 1)
-            if end - start > best_end - best_start:
-                best_start, best_end = start, end
+        for i in range(n - 1):
+            l, r = expand(i, i)
+            if r - l > right - left:
+                left, right = l, r
+            if s[i] == s[i + 1]:
+                l, r = expand(i, i + 1)
+                if r - l > right - left:
+                    left, right = l, r
         
-        return s[best_start:(best_end + 1)]
-
-
-        
+        return s[left:(right + 1)]
