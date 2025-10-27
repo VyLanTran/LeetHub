@@ -1,41 +1,24 @@
 class Solution:
     def hasPath(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
-        '''
-        Time: O(mn)
-        Space: O(mn)
-        '''
         rows, cols = len(maze), len(maze[0])
         directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]
-
-        def is_in_bound(i, j):
-            return (0 <= i < rows) and (0 <= j < cols)
-
-        def roll(i, j, di, dj):
-            while True:
-                new_i, new_j = i + di, j + dj
-                if is_in_bound(new_i, new_j):
-                    if maze[new_i][new_j] == 1:
-                        return i, j
-                    i, j = new_i, new_j
-                else:
-                    return i, j
-
-        visited = set()
-        visited.add((start[0], start[1]))
-        queue = deque([(start[0], start[1])])
+        start_i, start_j = start
+        queue = deque([(start_i, start_j)])
+        visited = set([(start_i, start_j)])
 
         while len(queue) > 0:
             i, j = queue.popleft()
             if i == destination[0] and j == destination[1]:
                 return True
             for di, dj in directions:
-                new_i, new_j = roll(i, j, di, dj)
-                if (new_i, new_j) not in visited:
-                    visited.add((new_i, new_j))
-                    queue.append((new_i, new_j))
+                # roll in that direction as far as we can
+                cur_i, cur_j = i, j
+                while (0 <= cur_i < rows) and (0 <= cur_j < cols) and maze[cur_i][cur_j] == 0:
+                    cur_i += di
+                    cur_j += dj
+                cur_i -= di
+                cur_j -= dj
+                if (cur_i, cur_j) not in visited:
+                    visited.add((cur_i, cur_j))
+                    queue.append((cur_i, cur_j))
         return False
-
-
-            
-            
-
