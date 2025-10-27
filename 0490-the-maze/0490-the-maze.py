@@ -1,5 +1,9 @@
 class Solution:
     def hasPath(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
+        '''
+        Time: O(mn)
+        Space: O(mn)
+        '''
         rows, cols = len(maze), len(maze[0])
         directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]
 
@@ -22,25 +26,14 @@ class Solution:
 
         while len(queue) > 0:
             i, j = queue.popleft()
-            # print(f'cur: {i, j}')
             if i == destination[0] and j == destination[1]:
                 return True
             for di, dj in directions:
                 new_i, new_j = roll(i, j, di, dj)
                 if (new_i, new_j) not in visited:
-                    # print(f'new end: {new_i, new_j, di, dj}')
                     visited.add((new_i, new_j))
                     queue.append((new_i, new_j))
         return False
-
-        '''
-           0,1,2,3,4
-        0 [0,e,0,0,0],
-        1 [1,1,0,0,1],
-        2 [0,0,0,0,0],
-        3 [0,1,0,0,1],
-        4 [0,1,0,s,0]
-        '''
 
 
             
