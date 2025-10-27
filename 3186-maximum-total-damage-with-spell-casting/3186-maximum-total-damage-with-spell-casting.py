@@ -63,7 +63,6 @@ class Solution:
         if n == 2:
             return c
 
-        print(a, b, c)
         for i in range(2, n):
             pp, p, cur = power[i - 2], power[i - 1], power[i] 
             cur_damage = cur * counter[cur]
@@ -74,14 +73,7 @@ class Solution:
                 if cur - pp > 2:
                     temp = max(cur_damage + b, c)
                 else:
-                    temp = max(cur_damage + a, b, c)
-                    # max(cur + 1, c)
+                    temp = max(cur_damage + a, c)
             a, b, c = b, c, temp
 
         return c
-
-        '''
-        1, 6, 7
-        1, 2, 1
-        '''
-        
