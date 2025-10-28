@@ -1,14 +1,8 @@
 class Solution:
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
         '''
-        1 0 0
-        1 1 0
-        1 1 0
-
-        if start or end is not 0:
-            return -1
-        
-        BFS
+        Time: O(n^2)
+        Space: O(n^2)
         '''
 
         if grid[0][0] != 0 or grid[-1][-1] != 0:
