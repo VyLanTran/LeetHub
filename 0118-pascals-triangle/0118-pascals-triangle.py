@@ -1,19 +1,6 @@
 class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
-        '''
-        if numRows <= 2:
-            special case
-        
-        res = [[1], [1, 1]]
-        for i from 2 to numRows: (i elements: 0, 1, ..., i - 1)
-            cur_row = [1]
-            for j from 1 to i - 2:
-                val = prev_row[j - 1] + prev_row[j]
-            cur_row.append(1)
 
-        dp as prev
-
-        '''
 
         if numRows == 1:
             return [[1]]
