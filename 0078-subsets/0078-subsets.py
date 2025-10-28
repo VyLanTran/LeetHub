@@ -1,29 +1,42 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         '''
-                i = 0
-        i=1                 i=1
-    i=2     i=2
-
-        depth = n
-        1 + 2 + 4 + 8 + ... + 2^(n-1)
-        S = 2^0 + 2^1 + ... + 2^(n-1)
-        2S=       2^1 + ... + 2^(n-1) + 2^n
-        S = 2^n - 2^0 
-        Time: O(n*2^n) - for each subset, it takes O(n) for deepcopy
-        Space: O(n) - the temp arr. We don't count the answer as auxiliary space
-        ''' 
-
         res = []
 
-        def rec(i, arr):
-            if i >= len(nums):
-                res.append(deepcopy(arr))
-                return
-            rec(i + 1, arr)
-            arr.append(nums[i])
-            rec(i + 1, arr)
-            arr.pop()
+        0, 1, 2
+        1, 2, 3
 
-        rec(0, [])
+        arr = [[]]
+        f(i = 2)
+            # skip
+            f(i = 1)
+                # skip
+                f(i = 0)
+                    # skip
+                    f(i = -1)
+                    # select
+                    arr.append(nums[i])
+                    f(i = -1)
+
+
+        f(i)
+            if i < 0:
+                add a deep copy of arr to res
+        '''
+
+        cur_set = []
+        res = []
+
+        def f(i):
+            if i < 0:
+                res.append(copy.deepcopy(cur_set))
+                return
+            # skip
+            f(i - 1)
+            # select
+            cur_set.append(nums[i])
+            f(i - 1)
+            cur_set.pop()
+
+        f(len(nums) - 1)
         return res
