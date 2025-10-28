@@ -6,17 +6,8 @@ class Solution(object):
         """
 
         '''
-        0,1,2,3,4,5,6,7,8
-        1,8,6,2,5,4,8,3,7
-                        r
-        l l
-        res = 8, 49
-
-        area = (r - l) * min(l, r)
-        if l < r:
-            # better to move l
-        else r > l:
-            # better to move r
+        Time: O(n)
+        Space: O(1)
         '''
         max_area = 0
         n = len(height)
