@@ -1,27 +1,10 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         '''
-        res = []
-
-        0, 1, 2
-        1, 2, 3
-
-        arr = [[]]
-        f(i = 2)
-            # skip
-            f(i = 1)
-                # skip
-                f(i = 0)
-                    # skip
-                    f(i = -1)
-                    # select
-                    arr.append(nums[i])
-                    f(i = -1)
-
-
-        f(i)
-            if i < 0:
-                add a deep copy of arr to res
+        n = len
+        For each i (n iterations): 2 options
+        Time: O(2^n * n) - deep copy
+        Space: O(n) 
         '''
 
         cur_set = []
