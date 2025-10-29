@@ -7,7 +7,6 @@ class Solution:
         for from_city, to_city, price in flights:
             adj_list[to_city].append((from_city, price))
 
-        print(adj_list)
 
         for i in range(k + 1):
             cur = [float(inf)] * n
@@ -16,9 +15,7 @@ class Solution:
                 for from_city, price in adj_list[to_city]:
                     expected_price = price + prev[from_city]
                     cur[to_city] = min(cur[to_city], expected_price)
-            print(prev)
-            print(cur)
-            print("--------")
+        
             prev = copy.deepcopy(cur)
         return -1 if prev[dst] == float('inf') else prev[dst]
 
