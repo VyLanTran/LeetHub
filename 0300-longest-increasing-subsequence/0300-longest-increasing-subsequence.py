@@ -1,19 +1,22 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         '''
-        Time: O(n^2)
-        Space: O(n)
+        10,9,2,5,3,7,101,18
+         1,1,1
+
+        for i from 0 to n - 1:
+            for j from 0 to i - 1:
+                if nums[j] < nums[i]:
+                    len = 1 + dp[j]
+                    update max val so far for dp[i]
         '''
 
-        res = 1
         n = len(nums)
         dp = [1] * n
 
-        for i in range(1, n):
+        for i in range(n):
             for j in range(i):
                 if nums[j] < nums[i]:
                     dp[i] = max(dp[i], 1 + dp[j])
-            res = max(res, dp[i])
 
-        return res
-            
+        return max(dp)
