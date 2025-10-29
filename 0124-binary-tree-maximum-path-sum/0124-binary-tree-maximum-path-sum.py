@@ -6,22 +6,16 @@
 #         self.right = right
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        '''
-        Time: O(n)
-        Space: O(n) - stack size
-        '''
-
-        res = float('-inf')
+        max_global = float('-inf')
 
         def f(node):
             if not node:
                 return 0
-            nonlocal res
-            left_sum = f(node.left)
-            right_sum = f(node.right)
-            not_branch_sum = node.val + max(0, left_sum, right_sum)
-            res = max(res, not_branch_sum, node.val + left_sum + right_sum)
-            return not_branch_sum
+            nonlocal max_global
+            left_sum, right_sum = f(node.left), f(node.right)
+            res = node.val + max(0, left_sum, right_sum)
+            max_global = max(max_global, res, node.val + left_sum + right_sum)
+            return res
 
         f(root)
-        return res
+        return max_global
