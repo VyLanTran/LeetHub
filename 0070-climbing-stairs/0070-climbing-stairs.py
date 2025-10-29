@@ -1,23 +1,26 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
         '''
-        Why dp[i] = dp[i - 1] + dp[i - 2]
-        To reach dp[i], there are 2 ways
-            1. Take dp[i - 2] ways + the last time is a 2-step
-            2. Take dp[i - 1] ways + the last time is a 1-step
-        => Finbonacci
+        f(n = 1) = 1
+        f(n = 2) 
+            # take 1 step
+            f(n - 1)
+            # take 2 steps
+            f(n - 2)
+            retirm f(n - 2) + f(n - 1)
 
-        Time: O(n)
-        Space: O(1)
+        a -> n - 2
+        b -> n - 1
+
+        for i from 3 to n, inclusively
+            a, b = b, a + b
+
+        a = 1
+        b = 2
         '''
-
         if n == 1:
             return 1
-        if n == 2:
-            return 2
-        prev1, prev2 = 1, 2
-
-        for i in range(n - 2):
-            prev1, prev2 = prev2, prev1 + prev2
-
-        return prev2
+        a, b = 1, 2
+        for i in range(3, n + 1):
+            a, b = b, a + b
+        return b
