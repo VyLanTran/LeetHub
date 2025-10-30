@@ -1,15 +1,10 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         '''
-        [a, b] = b -> a
-
-
-        {
-            0: [1]
-        }   
-                   0, 1
-        num_pre = [0, 0]
-        queue: 1
+        E = num edges
+        V = num vertices
+        Time: O(V + E)
+        Space: O(V + E)
         '''
 
         num_finish = 0
