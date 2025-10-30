@@ -1,34 +1,41 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         '''
-        V = number of vertices (courses)
-        E = number of edges (len of prerequisites)
+        [a, b] = b -> a
 
-        Time: O(V + E)
-            Note: for the while loop, we actually go through each nodes and edge at most once => O(E + V)
-        Space: O(V + E)
+
+        {
+            0: [1]
+        }   
+                   0, 1
+        num_pre = [0, 0]
+        queue: 1
         '''
 
-        num_taken = 0
+        num_finish = 0
+        adj_list = defaultdict(list)
+        num_pre = [0] * numCourses
         queue = deque()
-        in_degree = [0 for _ in range(numCourses)]
-        graph = defaultdict(list)
+        
+        for a, b in prerequisites:
+            adj_list[b].append(a)
+            num_pre[a] += 1
 
-        for next_course, prev_course in prerequisites:
-            in_degree[next_course] += 1
-            graph[prev_course].append(next_course)
-
-        for i, val in enumerate(in_degree):
-            if val == 0:
-                queue.append(i)
+        for course in range(numCourses):
+            if num_pre[course] == 0:
+                queue.append(course)
 
         while queue:
-            course = queue.popleft()
-            num_taken += 1
+            u = queue.popleft()
+            num_finish += 1
+            if num_finish == numCourses:
+                return True
+            for v in adj_list[u]:
+                num_pre[v] -= 1
+                if num_pre[v] == 0:
+                    queue.append(v)
 
-            for next_course in graph[course]:
-                in_degree[next_course] -= 1
-                if in_degree[next_course] == 0:
-                    queue.append(next_course)
+        return False 
 
-        return num_taken == numCourses
+
+        
