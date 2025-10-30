@@ -1,22 +1,27 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        '''
-        10,9,2,5,3,7,101,18
-         1,1,1
-
-        for i from 0 to n - 1:
-            for j from 0 to i - 1:
-                if nums[j] < nums[i]:
-                    len = 1 + dp[j]
-                    update max val so far for dp[i]
-        '''
-
         n = len(nums)
-        dp = [1] * n
+        subsequence = [nums[0]]
 
-        for i in range(n):
-            for j in range(i):
-                if nums[j] < nums[i]:
-                    dp[i] = max(dp[i], 1 + dp[j])
+        def binary_search(start, end, target):
+            left, right = start, end
+            res = right
+            while left <= right:
+                mid = left + (right - left) // 2
+                if subsequence[mid] >= target:
+                    res = mid
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            return res
+        
+        for i in range(1, n):
+            num = nums[i]
+            if num > subsequence[-1]:
+                subsequence.append(num)
+            else:
+                # find the first number in subsequence that >= num
+                j = binary_search(0, len(subsequence) - 1, num)
+                subsequence[j] = num
 
-        return max(dp)
+        return len(subsequence)
