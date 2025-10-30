@@ -1,31 +1,24 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        
-        graph = defaultdict(list)
-        inDeg = [0 for _ in range(numCourses)]
+        adj_list = defaultdict(list)
+        num_pre = [0] * numCourses
+        queue = deque()
         res = []
-        canTake = deque()
-        
-        def buildGraph():
-            for second, first in prerequisites:
-                graph[first].append(second)
-                inDeg[second] += 1
-                
-        buildGraph()
+
+        for a, b in prerequisites:
+            adj_list[b].append(a)
+            num_pre[a] += 1
         
         for i in range(numCourses):
-            if inDeg[i] == 0:
-                canTake.append(i)
-                                
-        while canTake:
-            first = canTake.popleft()
-            res.append(first)
-            for second in graph[first]:
-                inDeg[second] -= 1
-                if inDeg[second] == 0:
-                    canTake.append(second)
-                    
-        return res if len(res) == numCourses else []
-        
-        
-            
+            if num_pre[i] == 0:
+                queue.append(i)
+
+        while queue:
+            u = queue.popleft()
+            res.append(u)
+            for v in adj_list[u]:
+                num_pre[v] -= 1
+                if num_pre[v] == 0:
+                    queue.append(v)
+
+        return [] if len(res) < numCourses else res
