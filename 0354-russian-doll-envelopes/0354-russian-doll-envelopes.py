@@ -1,5 +1,9 @@
 class Solution:
     def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
+        '''
+        Time: O(nlog(n))
+        Space: O(n)
+        '''
         n = len(envelopes)
         envelopes.sort(key=lambda x:[x[0], -x[1]])
         increasing_heights = [envelopes[0][1]]
