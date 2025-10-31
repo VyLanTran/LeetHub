@@ -1,51 +1,46 @@
 class Solution:
     def largestIsland(self, grid: List[List[int]]) -> int:
         '''
-        1 1 1 0 0
-        1 1 0 1 1
-        0 0 1 0 1
+        1 1 x x
+        1 1 x x
+        1 0 1 1
+        x x 1 1
         '''
-
-        island_area = defaultdict(int)
         rows, cols = len(grid), len(grid[0])
-        hash_value = 2
+        island_area = defaultdict(int)
+        key = 2
         max_area = 0
+        dirs = [(0, -1), (0, 1), (1, 0), (-1, 0)]
 
-        direction = [[-1, 0], [1, 0], [0, -1], [0, 1]]
-
-        def dfs(i, j, hash_value):
-            area = 1
-            grid[i][j] = hash_value
-            for di, dj in direction:
-                new_i = i + di
-                new_j = j + dj
-                if 0 <= new_i < rows and 0 <= new_j < cols and grid[new_i][new_j] == 1:
-                    area += dfs(new_i, new_j, hash_value)
-            return area
+        def dfs(i, j, key):
+            if not (0 <= i < rows and 0 <= j < cols and grid[i][j] == 1):
+                return
+            grid[i][j] = key
+            island_area[key] += 1
+            dfs(i - 1, j, key)
+            dfs(i + 1, j, key)
+            dfs(i, j - 1, key)
+            dfs(i, j + 1, key)
 
         for i in range(rows):
             for j in range(cols):
                 if grid[i][j] == 1:
-                    area = dfs(i, j, hash_value)
-                    island_area[hash_value] = area
-                    hash_value += 1
-                    max_area = max(max_area, area)
-        
+                    dfs(i, j, key)
+                    key += 1
+
+        if len(island_area) == 0:
+            return 1
+
         for i in range(rows):
             for j in range(cols):
                 if grid[i][j] == 0:
-                    visited_islands = set()
-                    cur_area = 1
-                    for di, dj in direction:
-                        new_i = i + di
-                        new_j = j + dj
-                        if 0 <= new_i < rows and 0 <= new_j < cols and grid[new_i][new_j] not in visited_islands:
-                            hash_value = grid[new_i][new_j]
-                            visited_islands.add(hash_value)
-                            cur_area += island_area[hash_value]
-                    max_area = max(max_area, cur_area)
-
-        return max_area
-        
-
-
+                    unique_islands = set()
+                    for di, dj in dirs:
+                        new_i, new_j = i + di, j + dj
+                        if 0 <= new_i < rows and 0 <= new_j < cols and grid[new_i][new_j] != 0:
+                            unique_islands.add(grid[new_i][new_j])
+                           
+                    max_area = max(max_area, 1 + sum(island_area[key] for key in unique_islands))
+    
+    
+        return rows * cols if max_area == 0 else max_area
