@@ -8,7 +8,7 @@ class Solution:
         '''
 
         adj_list = defaultdict(list)
-        visited = [False] * n
+        visited = set()
 
         # build adj_list
         for u, v in edges:
@@ -16,9 +16,9 @@ class Solution:
             adj_list[v].append(u)
 
         def contains_cycle(node, prev):
-            if visited[node]:
+            if node in visited:
                 return True
-            visited[node] = True
+            visited.add(node)
             for neighbor in adj_list[node]:
                 if neighbor != prev:
                     if contains_cycle(neighbor, node):
@@ -27,5 +27,5 @@ class Solution:
 
         if contains_cycle(0, None):
             return False
-        return sum(1 if val is True else 0 for val in visited) == n
+        return len(visited) == n
         
