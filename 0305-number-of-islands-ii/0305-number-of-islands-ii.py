@@ -29,17 +29,7 @@ class UnionFind:
 
 class Solution:
     def numIslands2(self, m: int, n: int, positions: List[List[int]]) -> List[int]:
-        '''
-          0 1 2
-        0 0 0 x
-        1 x x 1
-        2 x x x
-
-        cur_id = 0
-        '''
-
         island_map = {}
-        n = len(positions)
         res = []
         island_id = 0
         dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
@@ -53,18 +43,13 @@ class Solution:
             adjacent_islands = set()
             for di, dj in dirs:
                 new_i, new_j = i + di, j + dj
-                # if i == 0 and j == 1 and new_i == 0 and new_j == 0:
-                #     print("check map: ", island_map)
-                #     print("check fact: ", (0, 0) in island_map)
-                #     print("check neighbor: ", (new_i, new_j) in island_map)
+               
                 if (not (0 <= new_i < m and 0 <= new_j < n)) or ((new_i, new_j) not in island_map):
                     continue
                 root_island = uf.find(island_map[(new_i, new_j)])
                 adjacent_islands.add(root_island)
                 
             adjacent_islands = list(adjacent_islands)
-            # if i == 0 and j == 1:
-            #     print(adjacent_islands)
             if len(adjacent_islands) == 0:
                 island_map[(i, j)] = island_id
                 uf.insert(island_id)
@@ -83,6 +68,5 @@ class Solution:
                 num_islands -= (len(adjacent_islands) - 1)
 
             res.append(num_islands)
-            # print(island_map)
 
         return res
