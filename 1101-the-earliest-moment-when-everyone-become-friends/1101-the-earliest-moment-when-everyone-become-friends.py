@@ -30,7 +30,7 @@ class Solution:
 
         0, 1 
         '''
-        logs.sort(key=lambda x: x[0])
+        # logs.sort(key=lambda x: x[0])
         num_sets = n
         uf = UnionFind(n)
 
