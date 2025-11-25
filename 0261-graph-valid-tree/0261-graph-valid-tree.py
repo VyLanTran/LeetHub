@@ -1,31 +1,35 @@
 class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
         '''
-        0 1 2 3 4
-        _ _ _ _ _
+        valid if:
+        - no cycle
+        - one island
 
-        f(0, prev = None)
+        f(0)
+            f(1)
+                f(2)
+                    f(3)
+
         '''
 
-        adj_list = defaultdict(list)
         visited = set()
+        adj_list = defaultdict(list)
 
-        # build adj_list
-        for u, v in edges:
-            adj_list[u].append(v)
-            adj_list[v].append(u)
+        for i, j in edges:
+            adj_list[i].append(j)
+            adj_list[j].append(i)
 
-        def contains_cycle(node, prev):
-            if node in visited:
-                return True
-            visited.add(node)
-            for neighbor in adj_list[node]:
-                if neighbor != prev:
-                    if contains_cycle(neighbor, node):
-                        return True
+        def dfs(i, parent):
+            if i in visited:
+                return False
+            visited.add(i)
+            for j in adj_list[i]:
+                if j != parent:
+                    if not dfs(j, i):
+                        return False
+            return True
+
+        if not dfs(0, -1):
             return False
 
-        if contains_cycle(0, None):
-            return False
         return len(visited) == n
-        
