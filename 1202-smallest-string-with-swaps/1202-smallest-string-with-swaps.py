@@ -27,22 +27,27 @@ class Solution:
     def smallestStringWithSwaps(self, s: str, pairs: List[List[int]]) -> str:
         n = len(s)
         uf = UnionFind(n)
-        island_to_heap = {}
-        res = []
+        island_chars = defaultdict(list)
+        island_indices = defaultdict(list)
+        res = [""] * n
 
         for i, j in pairs:
             uf.union(i, j)
 
         for i, char in enumerate(s):
             root = uf.find(i)
-            if root not in island_to_heap:
-                island_to_heap[root] = []
-            heappush(island_to_heap[root], char)
+            island_chars[root].append(char)
+            island_indices[root].append(i)
 
-        for i in range(n):
-            root = uf.find(i)
-            res.append(heappop(island_to_heap[root]))
+        for root, chars in island_chars.items():
+            chars.sort()
+            indices = island_indices[root]
+            for i in range(len(chars)):
+                res[indices[i]] = chars[i]
 
         return "".join(res)
+
+
+            
 
         
