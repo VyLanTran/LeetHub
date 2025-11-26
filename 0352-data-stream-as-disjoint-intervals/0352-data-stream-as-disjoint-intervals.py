@@ -24,7 +24,6 @@ class SummaryRanges:
             return
 
         insertion_index = self.binary_search(value)
-        print(f'intervals={self.intervals}, value={value}, insertion_index={insertion_index}')
         prev_interval = self.intervals[insertion_index - 1] if insertion_index >= 1 else None
         next_interval = self.intervals[insertion_index] if insertion_index < n else None
         if next_interval is not None and next_interval[0] <= value <= next_interval[-1]:
