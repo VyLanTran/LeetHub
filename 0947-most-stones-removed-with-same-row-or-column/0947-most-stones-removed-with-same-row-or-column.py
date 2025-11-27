@@ -1,12 +1,7 @@
 class UnionFind:
-    def __init__(self):
-        self.root = {}
-        self.rank = {}
-
-    def add(self, x):
-        if x not in self.root:
-            self.root[x] = x
-            self.rank[x] = 1
+    def __init__(self, vertices):
+        self.root = {(x, y): (x, y) for x, y in vertices}
+        self.rank = defaultdict(lambda: 1)
 
     def find(self, x):
         if x == self.root[x]:
@@ -25,38 +20,31 @@ class UnionFind:
                 if self.rank[root_y] == self.rank[root_x]:
                     self.rank[root_x] += 1
 
+    def is_connected(self, x, y):
+        return self.find(x) == self.find(y)
+
 class Solution:
     def removeStones(self, stones: List[List[int]]) -> int:
+        '''
+        Fact: a disjoint set with n components -> we can delete all but 1 component
+        Given n stones
+        Let say they form k disjoint sets 
+        Then there are k points remaining
+        => res = n - k
+
+        Problem becomes counting number of disjoint sets (similar to number of provinces)
+        '''
         n = len(stones)
-        row_dict = defaultdict(list)
-        col_dict = defaultdict(list)
-        uf = UnionFind()
-        res = 0
-        island_size = defaultdict(int)
+        num_sets = n
+        uf = UnionFind(stones)
 
-        for i, j in stones:
-            row_dict[i].append((i, j))
-            col_dict[j].append((i, j))
+        for i in range(n):
+            x1, y1 = stones[i]
+            for j in range(i + 1, n):
+                x2, y2 = stones[j]
+                if (x1 == x2 or y1 == y2) and not uf.is_connected((x1, y1), (x2, y2)):
+                    uf.union((x1, y1), (x2, y2))
+                    num_sets -= 1
 
-        for arr in row_dict.values():
-            first_vertex = arr[0]
-            uf.add(first_vertex)
-            for i in range(1, len(arr)):
-                vertex = arr[i]
-                uf.add(vertex)
-                uf.union(first_vertex, vertex)
+        return n - num_sets
 
-        for arr in col_dict.values():
-            first_vertex = arr[0]
-            uf.add(first_vertex)
-            for i in range(1, len(arr)):
-                vertex = arr[i]
-                uf.add(vertex)
-                uf.union(first_vertex, vertex)
-
-        for i, j in stones:
-            island_size[uf.find((i, j))] += 1
-
-        for value in island_size.values():
-            res += value - 1
-        return res
