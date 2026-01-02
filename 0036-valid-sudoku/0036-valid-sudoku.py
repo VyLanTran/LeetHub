@@ -1,24 +1,39 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         '''
-        Time: O(N^2) = O(1) since N = 9
-        Space: O(N^2) = O(1) since N = 9
-        '''
-        N = 9
-        rows = [set() for _ in range(N)]
-        cols = [set() for _ in range(N)]
-        boxes = [set() for _ in range(N)]
+         0 1 2 3 4 5 6 7 8 9
+        0
+        1
+        2
+        3
+        4
+        5
 
-        for i in range(N):
-            for j in range(N):
-                val = board[i][j]
-                if val == ".":
+        (2, 2): 0
+
+        0, 0 -> 0
+        1, 0 -> 3
+        1, 2 -> 5
+        2, 2 -> 8 = 2 * 3 + 2
+
+        8 -> 2 = 8//3
+        1 -> 3
+        ''' 
+
+        rows = defaultdict(set)
+        cols = defaultdict(set)
+        boxes = defaultdict(set)
+        SIZE = 9
+
+        for i in range(SIZE):
+            for j in range(SIZE):
+                char = board[i][j]
+                if char == ".":
                     continue
-                box_index = (i // 3) * 3 + (j // 3)
-                if val in rows[i] or val in cols[j] or val in boxes[box_index]:
+                if char in rows[i] or char in cols[j] or char in boxes[(i // 3) * 3 + j // 3]:
                     return False
-                rows[i].add(val)
-                cols[j].add(val)
-                boxes[box_index].add(val)
-        
+                rows[i].add(char)
+                cols[j].add(char)
+                boxes[(i // 3) * 3 + j // 3].add(char)
+
         return True
