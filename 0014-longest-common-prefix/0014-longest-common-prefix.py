@@ -1,24 +1,19 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        '''
         n = len(strs)
-        k = max len of a string
-        Time: O(kn)
-        Space: O(1)
-        '''
-
-        n = len(strs)
-        prefix = strs[0]
-        pointer = len(prefix) - 1
+        word1 = strs[0]
+        res = word1
 
         for i in range(1, n):
-            s = strs[i]
-            i, j = 0, 0
-            while i <= pointer and j < len(s) and prefix[i] == s[j]:
-                i += 1
-                j += 1
-            pointer = i - 1
+            word2 = strs[i]
+            j = 0
+            while j < min(len(word1), len(word2)):
+                if word1[j] == word2[j]:
+                    j += 1
+                else:
+                    break
+            res = word1[:j]
+            word1 = res
 
-        return prefix[:(pointer + 1)]
+        return res
 
-        
