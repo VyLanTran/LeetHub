@@ -2,8 +2,7 @@ class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         n = len(nums)
 
-        def find_target(is_first=True):
-            left, right = 0, n - 1
+        def find_target(is_first, left, right):
             res = None
             while left <= right:
                 mid = left + (right - left) // 2
@@ -19,4 +18,8 @@ class Solution:
                     right = mid - 1
             return -1 if res is None else res
 
-        return [find_target(), find_target(False)]
+        first = find_target(True, 0, n - 1)
+        if first == -1:
+            return [-1, -1]
+        last = find_target(False, first, n - 1)
+        return [first, last]
