@@ -1,19 +1,20 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        n = len(strs)
-        word1 = strs[0]
-        res = word1
-
-        for i in range(1, n):
-            word2 = strs[i]
-            j = 0
-            while j < min(len(word1), len(word2)):
-                if word1[j] == word2[j]:
-                    j += 1
-                else:
+        def merge(word1, word2):
+            m = min(len(word1), len(word2))
+            i = 0
+            while i < m:
+                if word1[i] != word2[i]:
                     break
-            res = word1[:j]
-            word1 = res
+                i += 1
+            return word1[:i]
 
-        return res
+        def divide(left, right):
+            if left == right:
+                return strs[left]
+            mid = left + (right - left) // 2
+            left_prefix = divide(left, mid)
+            right_prefix = divide(mid + 1, right)
+            return merge(left_prefix, right_prefix)
 
+        return divide(0, len(strs) - 1)
