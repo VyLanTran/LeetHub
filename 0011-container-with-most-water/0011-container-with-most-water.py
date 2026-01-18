@@ -4,21 +4,14 @@ class Solution(object):
         :type height: List[int]
         :rtype: int
         """
+        max_vol = 0
+        l, r = 0, len(height) - 1
 
-        '''
-        Time: O(n)
-        Space: O(1)
-        '''
-        max_area = 0
-        n = len(height)
-        left, right = 0, n - 1
-
-        while left < right:
-            left_height, right_height = height[left], height[right]
-            area = (right - left) * min(left_height, right_height)
-            max_area = max(max_area, area)
-            if left_height < right_height:
-                left += 1
+        while l < r:
+            max_vol = max(max_vol, min(height[l], height[r]) * (r - l))
+            if height[l] <= height[r]:
+                l += 1
             else:
-                right -= 1
-        return max_area
+                r -= 1
+
+        return max_vol
