@@ -1,37 +1,30 @@
 class Solution {
-
-private: 
-    string s;
-    int n;
-    vector<int> expand(int l, int r) {
-        while (l >= 0 && r < n && s[l] == s[r]) {
-            l -= 1;
-            r += 1;
-        }
-        return {l + 1, r - 1};
-    }
-
 public:
-    string longestPalindrome(string s_input) {
-        s = s_input;
-        n = s.size();
-        int min_l = 0, max_r = 0;
-
-        for (int i = 0; i < n; i++) {
-            vector<int> positions = expand(i, i);
-            int l = positions[0], r = positions[1];
-            if (r - l > max_r - min_l) {
-                min_l = l, max_r = r;
+    string longestPalindrome(string s) {
+        int opt_left = 0, opt_right = 0;
+        for (int i = 0; i < s.size(); i++) {
+            vector<int> pair = expand(s, i, i);
+            if (pair[1] - pair[0] > opt_right - opt_left) {
+                opt_left = pair[0];
+                opt_right = pair[1];
             }
-            if (i + 1 < n && s[i] == s[i + 1]) {
-                vector<int> positions = expand(i, i + 1);
-                int l = positions[0], r = positions[1];
-                if (r - l > max_r - min_l) {
-                    min_l = l, max_r = r;
+            if (i + 1 < s.size() && s[i + 1] == s[i]) {
+                vector<int> pair = expand(s, i, i + 1);
+                if (pair[1] - pair[0] > opt_right - opt_left) {
+                    opt_left = pair[0];
+                    opt_right = pair[1];
                 }
             }
         }
-
-        return s.substr(min_l, max_r - min_l + 1);
+        return s.substr(opt_left, opt_right - opt_left + 1);
     }
+
+private: 
+    vector<int> expand(string s, int left, int right) {
+        while (left - 1 >= 0 && right + 1 < s.size() && s[left - 1] == s[right + 1]) {
+            left--;
+            right++;
+        }
+        return {left, right};
+    }   
 };
