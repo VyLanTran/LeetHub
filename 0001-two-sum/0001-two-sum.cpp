@@ -6,11 +6,11 @@ public:
         for (int i = 0; i < nums.size(); i++) {
             int num = nums[i];
             int comp = target - num;
-            if (map.contains(comp))
+            if (map.find(comp) != map.end())
                 return {i, map[comp]};
             map[num] = i;
         }
 
-        return vector<int>();
+        return {};
     }
 };
